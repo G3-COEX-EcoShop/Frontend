@@ -15,15 +15,18 @@ export const Navbar = () => {
     const navItems = [
         {
             text: "Mi Cuenta",
-            icon: <AccountCircleOutlinedIcon />
+            icon: <AccountCircleOutlinedIcon />,
+            url: "/"
         },
         {
             text: "Mis pedidos",
-            icon: <StorefrontOutlinedIcon />
+            icon: <StorefrontOutlinedIcon />,
+            url: "/ordes"
         },
         {
             text: "Carrito",
-            icon: <ShoppingCartOutlinedIcon />
+            icon: <ShoppingCartOutlinedIcon />,
+            url: "/cart"
         }
     ]
 
@@ -55,14 +58,14 @@ export const Navbar = () => {
 
                 <Search />
 
-                <Box display="flex">
-                    {navItems.map(({ text, icon }) =>
+                <Box display="flex" sx={{ display: { xs: 'none', sm: 'flex', }, }}>
+                    {navItems.map(({ text, icon, url }) =>
                     (
                         <>
                             <Divider orientation="vertical" flexItem sx={{ margin: "0px 7px" }} />
-                            <Link href="/" component={NextLink}>
+                            <Link href={url} component={NextLink}>
                                 <Button variant="text" color="secondary" startIcon={icon}>
-                                    <Typography>{text}</Typography>
+                                    <Typography sx={{ display: { sm: 'none', md: 'block' }, }}>{text}</Typography>
                                 </Button>
                             </Link>
                         </>
@@ -72,6 +75,6 @@ export const Navbar = () => {
 
             </Toolbar>
 
-        </AppBar>
+        </AppBar >
     )
 }
