@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import NextLink from 'next/link'
+import { Link, Typography } from '@mui/material'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +17,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-     <h1>ECO Store</h1>
+        <h1>ECO Store</h1>
+
+        <NextLink href={`/`}>
+          <Link>
+            <Typography>Web</Typography>
+          </Link>
+        </NextLink>
+
+        <NextLink href={`/dashboard`}>
+          <Link>
+            <Typography>Dashboard</Typography>
+          </Link>
+        </NextLink>
 
       </main>
     </>
