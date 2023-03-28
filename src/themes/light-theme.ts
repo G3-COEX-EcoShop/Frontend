@@ -5,9 +5,15 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#1E1E1E",
+      main: "#FE0000",
     },
     secondary: {
+      main: "#ffffff",
+    },
+    info: {
+      main: "#833493",
+    },
+    success: {
       main: "#3A64D8",
     },
   },
@@ -17,6 +23,9 @@ export const lightTheme = createTheme({
         underline: "none",
       },
     },
+    MuiButtonBase: {
+      styleOverrides: {},
+    },
     MuiAppBar: {
       defaultProps: {
         elevation: 0,
@@ -24,7 +33,6 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          backgroundColor: "white",
           height: 60,
         },
       },
