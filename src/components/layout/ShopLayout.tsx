@@ -19,9 +19,9 @@ export const ShopLayout: FC<PropsWithChildren<props>> = ({
                 <title>{title}</title>
                 <meta name="description" content={pageDescription} />
 
-                <meta name="og:title" content={title} />
-                <meta name="og:description" content={pageDescription} />
-                {imageFullUrl && <meta name="og:image" content={imageFullUrl} />}
+                <meta property="og:title" name="og:title" content={title} />
+                <meta property="og:description" name="og:description" content={pageDescription} />
+                {imageFullUrl && <meta property="og:image" name="og:image" content={imageFullUrl} />}
             </Head>
             <nav>{/* todo:nav */}</nav>
             <main
