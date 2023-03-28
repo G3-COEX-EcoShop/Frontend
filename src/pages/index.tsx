@@ -20,15 +20,11 @@ export default function Home() {
         <h1>ECO Store</h1>
 
         <NextLink href={`/`}>
-          <Link>
-            <Typography>Web</Typography>
-          </Link>
+          <Typography>Web</Typography>
         </NextLink>
 
         <NextLink href={`/dashboard`}>
-          <Link>
-            <Typography>Dashboard</Typography>
-          </Link>
+          <Typography>Dashboard</Typography>
         </NextLink>
 
       </main>
