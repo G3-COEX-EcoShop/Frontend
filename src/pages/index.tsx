@@ -49,7 +49,7 @@ export default function Home() {
             <Grid item xs={6} sm={4}  >
               <Card>
                 <CardActionArea>
-                  <CardMedia title={item.text} image="" component='img' alt="product" />
+                  <CardMedia title={item.text} image="" component='img' alt="product" key={item.text} />
                 </CardActionArea>
               </Card>
             </Grid>
