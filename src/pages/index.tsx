@@ -46,10 +46,10 @@ export default function Home() {
       >
         {
           products.map((item) => (
-            <Grid item xs={6} sm={4}  >
+            <Grid item xs={6} sm={4} key={item.text}>
               <Card>
                 <CardActionArea>
-                  <CardMedia title={item.text} image="" component='img' alt="product" key={item.text} />
+                  <CardMedia title={item.text} image="" component='img' alt="product" />
                 </CardActionArea>
               </Card>
             </Grid>
