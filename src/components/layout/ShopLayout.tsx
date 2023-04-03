@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { FC, PropsWithChildren } from "react";
-import { Navbar } from "../UI";
+import { Navbar, SideMenu } from "../UI";
 
 interface props {
     title: string;
@@ -22,13 +22,20 @@ export const ShopLayout: FC<PropsWithChildren<props>> = ({
 
                 <meta property="og:title" name="og:title" content={title} />
                 <meta property="og:description" name="og:description" content={pageDescription} />
+
                 {imageFullUrl && <meta property="og:image" name="og:image" content={imageFullUrl} />}
+
             </Head>
-            <Navbar></Navbar>
+            <nav>
+                <Navbar></Navbar>
+            </nav>
+
+            <SideMenu/>
+
             <main
                 style={{
                     margin: "80px auto",
-                    maxWidth: "1440px",
+                    maxWidth: "1440px", 
                     padding: "0px 30px",
                 }}
             >
