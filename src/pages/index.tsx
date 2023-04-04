@@ -62,8 +62,8 @@ export default function Home() {
       <Typography variant='h1' component={'h1'}>Tienda</Typography>
       <Typography variant='h2' component={'h2'}>Todos los productos</Typography>
 
-      {/* Aqui sale un error, no me importa el componete */}
-      {/* <ProductList products={[]} /> */}
+      {/* Aqui sale un error, no me importa el comp */}
+      <ProductList products={[]} />
 
     </ShopLayout>
   )
