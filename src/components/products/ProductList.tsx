@@ -1,3 +1,5 @@
+/* product list */
+
 import React from "react"
 import { FC } from "react"
 import { Grid } from "@mui/material"
@@ -19,9 +21,8 @@ export const ProductList: FC <Props>  = ({ products }) => {
                     products={ products }
                 />
             ))
+            
         }
     </Grid>
     )
 }
-
-export default ProductList;

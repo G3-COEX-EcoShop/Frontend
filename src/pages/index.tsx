@@ -1,7 +1,8 @@
 import NextLink from 'next/link'
-import { Link, Typography, Grid, Card, CardActionArea, CardMedia } from '@mui/material'
+import {  Typography} from '@mui/material'
 import { ShopLayout } from '@/components/layout'
 import ListItem from '@mui/material/ListItem';
+import { ProductList } from '@/components/products';
 
 
 // const products = [
@@ -62,8 +63,10 @@ export default function Home() {
       <Typography variant='h1' component={'h1'}>Tienda</Typography>
       <Typography variant='h2' component={'h2'}>Todos los productos</Typography>
 
-      {/* Aqui sale un error, no me importa el comp */}
-      <ProductList products={[]} />
+
+      {/* en products falta terminarlo, el products es para filtrar las catetgorias que escojan los usuarios */}
+      <ProductList products={[]} 
+      />
 
     </ShopLayout>
   )
