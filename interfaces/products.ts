@@ -1,9 +1,15 @@
-export interface IProducts {
+export interface IProduct {
     _id: string;
     description: string;
-    images: string[];
-    inStock: number;
-    price: number;
+    images: string;
+    /* inStock: number;
+    price: number; */
+    /* sizes: ValidSizes[]; */
+    /* slug: string; */
+    /* tags: string[]; */
     title: string;
-    category: 'computadoras' | 'celulares' | 'audio' | 'televisores'
-} 
+    summary: string;
+    /* type: ValidTypes; */
+    gender: 'computadoras' | 'celulares' | 'audio' | 'televisores'
+}
+

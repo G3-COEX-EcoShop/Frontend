@@ -1,8 +1,10 @@
 import NextLink from 'next/link'
-import {  Typography} from '@mui/material'
+import {  Card, CardActionArea, CardMedia, Grid, Typography} from '@mui/material'
 import { ShopLayout } from '@/components/layout'
 import ListItem from '@mui/material/ListItem';
-import { ProductList } from '@/components/products';
+import { ProductList } from '@/components/product';
+import { initialData } from '../../database/products';
+import { IProduct } from '../../interfaces';
 
 
 // const products = [
@@ -63,9 +65,26 @@ export default function Home() {
       <Typography variant='h1' component={'h1'}>Tienda</Typography>
       <Typography variant='h2' component={'h2'}>Todos los productos</Typography>
 
+{/* 
+      <Grid container spacing={ 4 }>
+
+        {
+          initialData.products.map( product => (
+            <Grid item xs={ 6 } sm={ 4 } key={ product.images } >
+              <Card>
+                <CardActionArea>
+                  <CardMedia image={ `products/${ product.images }` } component='img' alt="product" />
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ) )
+        }    
+
+      </Grid> */}
+
 
       {/* en products falta terminarlo, el products es para filtrar las catetgorias que escojan los usuarios */}
-      <ProductList products={[]} 
+      <ProductList products={[ initialData.products as any ]} 
       />
 
     </ShopLayout>
