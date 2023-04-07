@@ -1,13 +1,14 @@
  import React from 'react';
-import { ShopLayout } from '../layout';
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
+import { ShopLayout } from '@/components/layout';
+import { initialData } from '../../../database/products';
  
 
 /* esto es para guardar el arreglo de los productos */
-// const product = initialData.products[0];
+const product = initialData.products[0]
 
 
-export const slug = () => {
+const ProductPage = () => {
    return (
       <ShopLayout title={ 'product.title' } pageDescription={ 'product.description' }>
         
@@ -41,7 +42,7 @@ export const slug = () => {
               {/* Description */}
               <Box sx={{ mt:3 }}>
                 <Typography variant='subtitle2' > Descripción </Typography>
-                <Typography variant='subtitle2' > {/* { product.descripion } */} </Typography>
+                <Typography variant='subtitle2' > { product.description } </Typography>
               </Box>
 
 
@@ -53,5 +54,7 @@ export const slug = () => {
 
       </ShopLayout>
     )
- }
+}
+
  
+export default ProductPage;
