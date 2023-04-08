@@ -3,6 +3,7 @@ import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 import { ShopLayout } from '@/components/layout';
 import { initialData } from '../../../database/products';
 import { ProductSlidesShow } from '@/components/product';
+import { ItemCounter } from '@/components/UI';
  
 
 /* esto es para guardar el arreglo de los productos */
@@ -16,9 +17,11 @@ const ProductPage = () => {
         <Grid container spacing={3}>
 
           <Grid item xs={ 12 } sm={ 7 }>
-            <ProductSlidesShow 
+            {/*  se creo el slideshow */}
+
+            {/* <ProductSlidesShow 
               images={ product.images }
-            />
+            /> */}
           </Grid>
 
           <Grid item xs={ 12 } sm={ 5 } >
@@ -31,7 +34,7 @@ const ProductPage = () => {
 
                 <Typography variant='subtitle2' > Cantidad </Typography>
 
-                {/* ItemCounter */}
+                <ItemCounter />
 
               </Box>
 
