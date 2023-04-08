@@ -5,9 +5,9 @@ import SearchIcon from '@mui/icons-material/Search';
 const SearchBase = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: 'white',
+  backgroundColor: alpha(theme.palette.common.white, 0.6),
   "&:hover": {
-    backgroundColor: 'white',
+    backgroundColor: alpha(theme.palette.common.white, 0.7),
   },
   marginLeft: "16px",
   marginRight: "3px",
@@ -16,7 +16,6 @@ const SearchBase = styled("div")(({ theme }) => ({
     marginLeft: theme.spacing(1),
     width: "auto",
   },
-  border:' solid gray 1px  '
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -26,14 +25,13 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",
-  justifyContent: "end",
-  color:'gray'
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 3, 1, 0),
+    padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
@@ -47,7 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     [theme.breakpoints.up("md")]: {
       width: "60ch",
       "&:focus": {
-        width: "60ch",
+        width: "65ch",
       },
     },
   },
@@ -61,7 +59,7 @@ export const Search = () => {
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Search…"
-        inputProps={{ 'aria-label': 'search', color:'black' }}
+        inputProps={{ 'aria-label': 'search' }}
       />
     </SearchBase>
   )
