@@ -26,7 +26,7 @@ export const Navbar = () => {
         {
             text: "Carrito",
             icon: <ShoppingCartOutlinedIcon />,
-            url: "/cart"
+            url: "/cart/empty"
         }
     ]
 
@@ -61,14 +61,14 @@ export const Navbar = () => {
                 <Box display="flex" sx={{ display: { xs: 'none', sm: 'flex', }, }}>
                     {navItems.map(({ text, icon, url }, i) =>
                     (
-                        <>
-                            <Divider orientation="vertical" flexItem sx={{ margin: "0px 7px" }} key={i} />
-                            <Link href={url} component={NextLink} key={i}>
-                                <Button variant="text" color="secondary" startIcon={icon}>
+                        <Box key={i}>
+                            <Divider orientation="vertical" flexItem sx={{ margin: "0px 7px" }} />
+                            <Link href={url} component={NextLink} >
+                                <Button variant="text" color="secondary" startIcon={icon} >
                                     <Typography sx={{ display: { sm: 'none', md: 'block' }, }}>{text}</Typography>
                                 </Button>
                             </Link>
-                        </>
+                        </Box>
                     ))}
 
                 </Box>
