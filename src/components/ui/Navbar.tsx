@@ -61,8 +61,8 @@ export const Navbar = () => {
                 <Box display="flex" sx={{ display: { xs: 'none', sm: 'flex', }, }}>
                     {navItems.map(({ text, icon, url }, i) =>
                     (
-                        <Box key={i}>
-                            <Divider orientation="vertical" flexItem sx={{ margin: "0px 7px" }} />
+                        <Box key={i} sx={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
+                            <Divider orientation="vertical" flexItem sx={{ margin: "0px 7px", }} />
                             <Link href={url} component={NextLink} >
                                 <Button variant="text" color="secondary" startIcon={icon} >
                                     <Typography sx={{ display: { sm: 'none', md: 'block' }, }}>{text}</Typography>
