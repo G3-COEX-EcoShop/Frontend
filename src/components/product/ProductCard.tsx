@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useState } from 'react';
 import NextLink from 'next/link'
 import { Box, Card, CardActionArea, CardMedia, Grid, Link, Typography } from '@mui/material';
-import { IProduct } from '../../../interfaces';
+import { IProduct } from '../../interfaces';
 
 
 interface Props {

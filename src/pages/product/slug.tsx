@@ -1,66 +1,66 @@
- import React from 'react';
+import React from 'react';
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 import { ShopLayout } from '@/components/layout';
 import { initialData } from '../../../database/products';
 import { ProductSlidesShow } from '@/components/product';
-import { ItemCounter } from '@/components/UI';
- 
+import { ItemCounter } from '@/components/ui';
+
 
 /* esto es para guardar el arreglo de los productos */
 const product = initialData.products[0]
 
 
 const ProductPage = () => {
-   return (
-      <ShopLayout title={ 'product.title' } pageDescription={ 'product.description' }>
-        
-        <Grid container spacing={3}>
+  return (
+    <ShopLayout title={'product.title'} pageDescription={'product.description'}>
 
-          <Grid item xs={ 12 } sm={ 7 }>
-            {/*  se creo el slideshow */}
+      <Grid container spacing={3}>
 
-            {/* <ProductSlidesShow 
+        <Grid item xs={12} sm={7}>
+          {/*  se creo el slideshow */}
+
+          {/* <ProductSlidesShow 
               images={ product.images }
             /> */}
-          </Grid>
+        </Grid>
 
-          <Grid item xs={ 12 } sm={ 5 } >
-            <Box>
-              {/* titulos */}
-              <Typography variant='h1' component='h1'> { product.title } </Typography>
-              <Typography variant='subtitle1' component='h2'> { `$${product.price}` } </Typography>
+        <Grid item xs={12} sm={5} >
+          <Box>
+            {/* titulos */}
+            <Typography variant='h1' component='h1'> {product.title} </Typography>
+            <Typography variant='subtitle1' component='h2'> {`$${product.price}`} </Typography>
 
-              <Box sx={{ my: 2 }}>
+            <Box sx={{ my: 2 }}>
 
-                <Typography variant='subtitle2' > Cantidad </Typography>
+              <Typography variant='subtitle2' > Cantidad </Typography>
 
-                <ItemCounter />
-
-              </Box>
-
-              {/* Agregar al carrito */}
-              <Button color='primary' className='circular-btn'>
-                Agregar al carrito
-              </Button>
-
-              {/* <Chip label=' No hay disponible ' color='error' variant='outlined' /> */}
-
-              {/* Description */}
-              <Box sx={{ mt:3 }}>
-                <Typography variant='subtitle2' > Descripción </Typography>
-                <Typography variant='body2' > { product.summary } </Typography>
-              </Box>
-
+              <ItemCounter />
 
             </Box>
 
-          </Grid>
+            {/* Agregar al carrito */}
+            <Button color='primary' className='circular-btn'>
+              Agregar al carrito
+            </Button>
+
+            {/* <Chip label=' No hay disponible ' color='error' variant='outlined' /> */}
+
+            {/* Description */}
+            <Box sx={{ mt: 3 }}>
+              <Typography variant='subtitle2' > Descripción </Typography>
+              <Typography variant='body2' > {product.summary} </Typography>
+            </Box>
+
+
+          </Box>
 
         </Grid>
 
-      </ShopLayout>
-    )
+      </Grid>
+
+    </ShopLayout>
+  )
 }
 
- 
+
 export default ProductPage;

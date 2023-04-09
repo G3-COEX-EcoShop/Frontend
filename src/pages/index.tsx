@@ -1,73 +1,44 @@
-import NextLink from 'next/link'
-import { Card, CardActionArea, CardMedia, Grid, Typography } from '@mui/material'
-import { ShopLayout } from '@/components/layout'
-import ListItem from '@mui/material/ListItem';
+import { Typography, Box, Button } from '@mui/material';
+import { ShopLayout } from '@/components/layout';
+import Image from 'next/image'
 import { ProductList } from '@/components/product';
-import { initialData } from '../../database/products';
-import { IProduct } from '../../interfaces';
-
+import { useProducts } from '@/hooks/useProduct';
+import { FullScreenLoading } from '@/components/ui/FullScreenLoading';
 export default function Home() {
+
+  const { products, isLoading, setlist, isError } = useProducts('product/list');
+
+  function handleCategory(type: string): void {
+
+  }
+
   return (
     <ShopLayout title={'Tienda EcoShop'} pageDescription={'Bienvenido a nuestra tienda de electrónica, donde ofrecemos una amplia variedad de productos de tecnología de vanguardia'} imageFullUrl='https://lh3.googleusercontent.com/u/0/drive-viewer/AAOQEOQnX9lPLVoh3eL1WKMqg2-dZlDDsfO4H_JusGDbkNBFF7ugyWllUCV5wipPARdgpGLp8srtCotMFYWTlynZiHvVe0vA=w1920-h975'>
-      {/*       <Typography variant='h1' component="h1">Tienda</Typography>
-      <Typography variant='h2' component="h2" sx={{ mb: 1 }} > EcoShop</Typography>
 
-      <Link href={`/`} component={NextLink}>
-        <Typography>Web</Typography>
-      </Link>
+      <Box flexDirection={{ xs: 'column', sm: "row" }} display={'flex'} justifyContent={'space-around'}>
+        <Button size="small" variant="outlined">
+          <Box flexDirection={'row'} onClick={(e) => { handleCategory("") }} justifyItems={'center'} alignItems={'center'} display={'flex'}>
+            <Image width={40} height={40} src={"https://res.cloudinary.com/dlrdlubmf/image/upload/v1680119784/EcoShop/Televisor/TV_CHALLENGER_65_PULGADAS_UHD_LED_Plano_SmartTV_tmu2jc.jpg"} alt="icono televisores">
 
-      <Link href={`/dashboard`} component={NextLink}>
-        <Typography>Dashboard</Typography>
-      </Link>
+            </Image>
+            <Typography variant='subtitle2' component={"span"}>Televisores</Typography>
+          </Box>
+        </Button>
+        <Button>
+          <Box flexDirection={'row'} onClick={(e) => { handleCategory("") }} justifyItems={'center'} alignItems={'center'} display={'flex'}>
+            <Image width={40} height={40} src={"https://res.cloudinary.com/dlrdlubmf/image/upload/v1680119784/EcoShop/Televisor/TV_CHALLENGER_65_PULGADAS_UHD_LED_Plano_SmartTV_tmu2jc.jpg"} alt="icono televisores">
 
+            </Image>
+            <Typography variant='subtitle2' component={"span"}>Televisores</Typography>
+          </Box>
+        </Button>
 
-      <Grid
-        container
-        spacing={1}
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        alignContent="stretch"
-        wrap="wrap"
-
-      >
-        {
-          products.map((item) => (
-            <Grid item xs={6} sm={4} key={item.text}>
-              <Card>
-                <CardActionArea>
-                  <CardMedia title={item.text} image="" component='img' alt="product" />
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))
-        }
-      </Grid> */}
-
-      <Typography variant='h1' component={'h1'}>Tienda</Typography>
-      <Typography variant='h2' component={'h2'}>Todos los productos</Typography>
-
-      {/* 
-      <Grid container spacing={ 4 }>
-
-        {
-          initialData.products.map( product => (
-            <Grid item xs={ 6 } sm={ 4 } key={ product.images } >
-              <Card>
-                <CardActionArea>
-                  <CardMedia image={ `products/${ product.images }` } component='img' alt="product" />
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ) )
-        }    
-
-      </Grid> */}
-
-
-      {/* en products falta terminarlo, el products es para filtrar las catetgorias que escojan los usuarios */}
-      <ProductList products={[initialData.products as any]}
-      />
+      </Box>
+      {
+        isLoading
+          ? <FullScreenLoading />
+          : <ProductList products={products} />
+      }
 
     </ShopLayout>
   )
