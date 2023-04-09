@@ -1,9 +1,8 @@
 import { BasicoLayout } from '@/components/layout/BasicoLayout'
-import React from 'react'
 import { Avatar, Button, TextField } from "@mui/material";
 import { useState } from "react";
 
-const index = () => {
+const User = () => {
     const [user, setUser] = useState({
         name: "John Doe",
         email: "johndoe@example.com",
@@ -40,4 +39,4 @@ const index = () => {
     )
 }
 
-export default index
+export default User

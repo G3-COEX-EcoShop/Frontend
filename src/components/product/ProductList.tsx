@@ -5,14 +5,16 @@ import { FC } from "react"
 import { Grid } from "@mui/material"
 import { ProductCard } from "./ProductCard"
 import { IProduct } from "../../interfaces"
+import { useProducts } from "@/hooks/useProduct"
 
 interface Props {
     productsStatic: IProduct[]
-    productsDinamic: IProduct[]
 }
 
 
-export const ProductList: FC<Props> = ({ productsStatic, productsDinamic }) => {
+export const ProductList: FC<Props> = ({ productsStatic }) => {
+    const { products: productsDinamic, isLoading, setlist, isError } = useProducts('product/list');
+
 
     return (
         <Grid container spacing={4}>
@@ -21,7 +23,10 @@ export const ProductList: FC<Props> = ({ productsStatic, productsDinamic }) => {
                     <ProductCard
                         key={i}
                         product={product}
-                        price={productsDinamic.find((item) => { item.id == product.id })?.price}
+                        price={productsDinamic.find((item) => (item.id === product.id))?.price
+
+                        }
+                        isLoading={isLoading}
                     />
                 ))
 

@@ -2,8 +2,6 @@ import { Typography, Box, Button } from '@mui/material';
 import { ShopLayout } from '@/components/layout';
 import Image from 'next/image'
 import { ProductList } from '@/components/product';
-import { useProducts } from '@/hooks/useProduct';
-import { FullScreenLoading } from '@/components/ui/FullScreenLoading';
 import { GetStaticProps } from 'next';
 import { ICategory, IProduct } from '@/interfaces';
 import { FC } from 'react';
@@ -14,7 +12,6 @@ interface props {
 }
 const Home: FC<props> = ({ productsStatic, categories }) => {
 
-  const { products: productsDinamic, isLoading, setlist, isError } = useProducts('product/list');
   function handleCategory(type: string): void {
 
   }
@@ -41,11 +38,8 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
           })}
 
       </Box>
-      {
-        isLoading
-          ? <FullScreenLoading />
-          : <ProductList productsStatic={productsStatic} productsDinamic={productsDinamic} />
-      }
+      <ProductList productsStatic={productsStatic} />
+
 
     </ShopLayout>
   )

@@ -1,17 +1,18 @@
 import React, { FC, useMemo, useState } from 'react';
 import NextLink from 'next/link'
-import { Box, Card, CardActionArea, CardMedia, Grid, Link, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardMedia, Grid, Link, Skeleton, Typography } from '@mui/material';
 import { IProduct } from '../../interfaces';
 
 
 interface Props {
   product: IProduct;
-  price: number | undefined
+  price: number | undefined;
+  isLoading: boolean
 }
 
 export const ProductCard: FC<Props> = ({ product: {
   id, category, brand, name, description, urlImg, stock, state
-}, price }) => {
+}, price, isLoading }) => {
 
 
   const [isHovered, setIsHovered] = useState(false)
@@ -51,7 +52,12 @@ export const ProductCard: FC<Props> = ({ product: {
 
           <Box sx={{ mt: 1 }} className='fadeIn' >
             <Typography fontWeight={800}> {name} </Typography>
-            <Typography fontWeight={500} > {`$${price}`} </Typography>
+            {
+              isLoading ? (<Skeleton variant="text" sx={{ fontSize: '0.25rem' }} />) : (
+                <Typography fontWeight={500} > {`$${price}`} </Typography>
+              )
+
+            }
           </Box>
         </Grid>
       }
