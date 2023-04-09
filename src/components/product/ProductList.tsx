@@ -7,18 +7,21 @@ import { ProductCard } from "./ProductCard"
 import { IProduct } from "../../interfaces"
 
 interface Props {
-    products: IProduct[]
+    productsStatic: IProduct[]
+    productsDinamic: IProduct[]
 }
 
 
-export const ProductList: FC<Props> = ({ products }) => {
+export const ProductList: FC<Props> = ({ productsStatic, productsDinamic }) => {
+
     return (
         <Grid container spacing={4}>
             {
-                products.map((products, i) => (
+                productsStatic.length && productsStatic.map((product, i) => (
                     <ProductCard
                         key={i}
-                        products={products}
+                        product={product}
+                        price={productsDinamic.find((item) => { item.id == product.id })?.price}
                     />
                 ))
 

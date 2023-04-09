@@ -14,9 +14,9 @@ export const Navbar = () => {
 
     const navItems = [
         {
-            text: "Mi Cuenta",
-            icon: <AccountCircleOutlinedIcon />,
-            url: "/"
+            text: "Carrito",
+            icon: <ShoppingCartOutlinedIcon />,
+            url: "/cart/empty"
         },
         {
             text: "Mis pedidos",
@@ -24,10 +24,10 @@ export const Navbar = () => {
             url: "/ordes"
         },
         {
-            text: "Carrito",
-            icon: <ShoppingCartOutlinedIcon />,
-            url: "/cart/empty"
-        }
+            text: "Mi Cuenta",
+            icon: <AccountCircleOutlinedIcon />,
+            url: "/user"
+        },
     ]
 
     const [mobileOpen, setMobileOpen] = useState(false);

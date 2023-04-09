@@ -1,16 +1,14 @@
 import React from 'react';
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 import { ShopLayout } from '@/components/layout';
-import { initialData } from '../../../database/products';
 import { ProductSlidesShow } from '@/components/product';
 import { ItemCounter } from '@/components/ui';
 
 
 /* esto es para guardar el arreglo de los productos */
-const product = initialData.products[0]
 
 
-const ProductPage = () => {
+const ProductPage = (product: any) => {
   return (
     <ShopLayout title={'product.title'} pageDescription={'product.description'}>
 

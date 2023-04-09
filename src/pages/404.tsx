@@ -1,10 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react'
 import { ShopLayout } from '../components/layout/ShopLayout';
+import { BasicoLayout } from '@/components/layout/BasicoLayout';
 
 const custom404 = () => {
     return (
-        <ShopLayout title={'not found'} pageDescription={''}>
+        <BasicoLayout >
 
             <Box
                 display='flex'
@@ -16,7 +17,7 @@ const custom404 = () => {
                 <Typography variant='h1' component='h1' fontSize={80} fontWeight={200}>404 |</Typography>
                 <Typography marginLeft={2}>No encontramos ninguna página aquí</Typography>
             </Box>
-        </ShopLayout>
+        </BasicoLayout>
     )
 }
 

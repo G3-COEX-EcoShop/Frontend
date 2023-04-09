@@ -5,48 +5,56 @@ import { IProduct } from '../../interfaces';
 
 
 interface Props {
-  products: IProduct;
+  product: IProduct;
+  price: number | undefined
 }
 
-export const ProductCard: FC<Props> = ({ products }) => {
+export const ProductCard: FC<Props> = ({ product: {
+  id, category, brand, name, description, urlImg, stock, state
+}, price }) => {
 
 
   const [isHovered, setIsHovered] = useState(false)
 
   /* este Hook ayuda hacer hover a la imagen, cambiandola y haciendo un pequeño zoom  */
-  const productImage = useMemo(() => {
-    return isHovered
-      ? ` products/${products.images} `
-      : ` products/${products.images} `
+  // const productImage = useMemo(() => {
+  //   return isHovered
+  //     ? ` products/${products.images} `
+  //     : ` products/${products.images} `
 
 
-  }, [isHovered, products.images])
+  // }, [isHovered, products.images])
 
   return (
-    <Grid item
-      xs={6}
-      sm={4}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <Card>
-        <NextLink href="/product/slug" passHref prefetch={false} >
-          <Link component="span">
-            <CardActionArea>
-              <CardMedia
-                image={productImage}
-                component='img'
-                className='fadeIn'
-                alt={products.title} />
-            </CardActionArea>
-          </Link>
-        </NextLink>
-      </Card>
+    <>
+      {state &&
+        <Grid item
+          xs={6}
+          sm={4}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
 
-      <Box sx={{ mt: 1 }} className='fadeIn' >
-        <Typography fontWeight={800}> {products.title} </Typography>
-        <Typography fontWeight={500} > {`$${products.title}`} </Typography>
-      </Box>
-    </Grid>
+          <Card>
+            <NextLink href="/product/slug" passHref prefetch={false} >
+              <Link component="span">
+                <CardActionArea>
+                  <CardMedia
+                    image={urlImg}
+                    component='img'
+                    className='fadeIn'
+                    alt={name} />
+                </CardActionArea>
+              </Link>
+            </NextLink>
+          </Card>
+
+          <Box sx={{ mt: 1 }} className='fadeIn' >
+            <Typography fontWeight={800}> {name} </Typography>
+            <Typography fontWeight={500} > {`$${price}`} </Typography>
+          </Box>
+        </Grid>
+      }
+    </>
   )
 }
