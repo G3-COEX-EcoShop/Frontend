@@ -11,18 +11,18 @@ interface Props {
 }
 
 
-export const ProductList: FC <Props>  = ({ products }) => {
-  return (
-    <Grid container spacing={4}>
-        {
-            products.map( products => (
-                <ProductCard 
-                    key={ products.title }
-                    products={ products }
-                />
-            ))
-            
-        }
-    </Grid>
+export const ProductList: FC<Props> = ({ products }) => {
+    return (
+        <Grid container spacing={4}>
+            {
+                products.map((products, i) => (
+                    <ProductCard
+                        key={i}
+                        products={products}
+                    />
+                ))
+
+            }
+        </Grid>
     )
 }

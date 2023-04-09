@@ -1,33 +1,15 @@
 import NextLink from 'next/link'
-import {  Card, CardActionArea, CardMedia, Grid, Typography} from '@mui/material'
+import { Card, CardActionArea, CardMedia, Grid, Typography } from '@mui/material'
 import { ShopLayout } from '@/components/layout'
 import ListItem from '@mui/material/ListItem';
 import { ProductList } from '@/components/product';
 import { initialData } from '../../database/products';
 import { IProduct } from '../../interfaces';
 
-
-// const products = [
-//   {
-//     text: "1"
-//   }, {
-//     text: "2"
-//   }, {
-//     text: "3"
-//   }, {
-//     text: "4"
-//   }, {
-//     text: "5"
-//   }, {
-//     text: "6"
-//   },
-// ]
-
-
 export default function Home() {
   return (
     <ShopLayout title={'Tienda EcoShop'} pageDescription={'Bienvenido a nuestra tienda de electrónica, donde ofrecemos una amplia variedad de productos de tecnología de vanguardia'} imageFullUrl='https://lh3.googleusercontent.com/u/0/drive-viewer/AAOQEOQnX9lPLVoh3eL1WKMqg2-dZlDDsfO4H_JusGDbkNBFF7ugyWllUCV5wipPARdgpGLp8srtCotMFYWTlynZiHvVe0vA=w1920-h975'>
-{/*       <Typography variant='h1' component="h1">Tienda</Typography>
+      {/*       <Typography variant='h1' component="h1">Tienda</Typography>
       <Typography variant='h2' component="h2" sx={{ mb: 1 }} > EcoShop</Typography>
 
       <Link href={`/`} component={NextLink}>
@@ -65,7 +47,7 @@ export default function Home() {
       <Typography variant='h1' component={'h1'}>Tienda</Typography>
       <Typography variant='h2' component={'h2'}>Todos los productos</Typography>
 
-{/* 
+      {/* 
       <Grid container spacing={ 4 }>
 
         {
@@ -84,7 +66,7 @@ export default function Home() {
 
 
       {/* en products falta terminarlo, el products es para filtrar las catetgorias que escojan los usuarios */}
-      <ProductList products={[ initialData.products as any ]} 
+      <ProductList products={[initialData.products as any]}
       />
 
     </ShopLayout>
