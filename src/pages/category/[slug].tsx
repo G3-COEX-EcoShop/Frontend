@@ -1,3 +1,4 @@
+import { ShopLayout } from '@/components/layout';
 import { ProductList } from '@/components/product';
 import { useProducts } from '@/hooks/useProduct';
 import { ICategory, IProduct } from '@/interfaces';
@@ -13,12 +14,15 @@ interface Props {
 }
 
 const categoryPage: FC<Props> = ({ productsStatic, path, category }) => {
-    const { products: productsDinamic, isLoading, setlist, isError } = useProducts('product/list');
+    const { products: productsDinamic, isLoading, setlist, isError } = useProducts(path);
 
     console.log({ productsStatic, path, category });
 
     return (
-        <ProductList productsStatic={productsStatic} productsDinamic={productsDinamic} isLoading={isLoading} />
+        <ShopLayout title={`Productos de la categoria ${category.name}`} pageDescription={`Todos nuestros productos en la categorias de ${category.name}`} imageFullUrl={category.img_url}>
+
+            <ProductList productsStatic={productsStatic} productsDinamic={productsDinamic} isLoading={isLoading} />
+        </ShopLayout>
     )
 }
 
@@ -59,7 +63,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     return {
         props: {
-            product: product.data,
+            productsStatic: product.data,
             path: product.path,
             category: params
         },
