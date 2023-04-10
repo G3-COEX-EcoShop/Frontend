@@ -5,6 +5,8 @@ import { ProductList } from '@/components/product';
 import { GetStaticProps } from 'next';
 import { ICategory, IProduct } from '@/interfaces';
 import { FC } from 'react';
+import { categoryList } from '@/services/category';
+import { productList } from '@/services/product';
 
 interface props {
   productsStatic: IProduct[],
@@ -47,26 +49,17 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 
-  let categories = [] as ICategory[]
-  let products = [] as IProduct[]
+  let categories = await categoryList();
+  let products = await productList();
 
-  try {
-    const dataProducts = await fetch(`${urlbase}product/list`);
-    if (dataProducts) products = await dataProducts.json()
-    const dataCategories = await fetch(`${urlbase}category/list`);
-    if (dataCategories) categories = await dataCategories.json()
 
-  } catch (error) {
-    console.log(error);
-
-  }
 
   return {
     props: {
       productsStatic: products,
       categories: categories
     },
-    revalidate: 28800
+    revalidate: 28800 //cada 8 horas
   }
 }
 
