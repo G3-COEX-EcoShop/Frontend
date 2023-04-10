@@ -1,7 +1,7 @@
 import { ICategory } from "@/interfaces";
 const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 
-export const categoryList = async () => {
+export const categoriesList = async () => {
   let categories = [] as ICategory[];
   try {
     const dataCategories = await fetch(`${urlbase}category/list`);

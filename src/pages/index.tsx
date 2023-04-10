@@ -5,15 +5,16 @@ import { ProductList } from '@/components/product';
 import { GetStaticProps } from 'next';
 import { ICategory, IProduct } from '@/interfaces';
 import { FC } from 'react';
-import { categoryList } from '@/services/category';
-import { productList } from '@/services/product';
+import { categoriesList } from '@/services/category';
+import { productsList } from '@/services/product';
+import { useProducts } from '@/hooks/useProduct';
 
 interface props {
   productsStatic: IProduct[],
   categories: ICategory[]
 }
 const Home: FC<props> = ({ productsStatic, categories }) => {
-
+  const { products: productsDinamic, isLoading, setlist, isError } = useProducts('product/list');
   function handleCategory(type: string): void {
 
   }
@@ -40,7 +41,7 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
           })}
 
       </Box>
-      <ProductList productsStatic={productsStatic} />
+      <ProductList productsStatic={productsStatic} productsDinamic={productsDinamic} isLoading={isLoading} />
 
 
     </ShopLayout>
@@ -49,8 +50,8 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 
-  let categories = await categoryList();
-  let products = await productList();
+  let categories = await categoriesList();
+  let products = await productsList();
 
 
 
