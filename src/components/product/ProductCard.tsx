@@ -36,13 +36,6 @@ export const ProductCard: FC<Props> = ({ product: {
           onMouseLeave={() => setIsHovered(false)}
         >
 
-<<<<<<< HEAD
-    <Box sx={{ mt: 1 }} className='fadeIn' >
-      <Typography fontWeight={ 800 }> { products.title } </Typography>
-      <Typography fontWeight={ 500 } > { `$${products.price}` } </Typography>
-    </Box>
-  </Grid>
-=======
           <Card>
             <NextLink href="/product/slug" passHref prefetch={false} >
               <Link component="span">
@@ -69,6 +62,5 @@ export const ProductCard: FC<Props> = ({ product: {
         </Grid>
       }
     </>
->>>>>>> 27740354e4726c4f0d61ecf8790818ec6297eb98
   )
 }

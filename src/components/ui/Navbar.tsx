@@ -24,17 +24,10 @@ export const Navbar = () => {
             url: "/ordes"
         },
         {
-<<<<<<< HEAD:src/components/UI/Navbar.tsx
-            text: "Carrito",
-            icon: <ShoppingCartOutlinedIcon />,
-            url: "/cart"
-        }
-=======
             text: "Mi Cuenta",
             icon: <AccountCircleOutlinedIcon />,
             url: "/user"
         },
->>>>>>> 27740354e4726c4f0d61ecf8790818ec6297eb98:src/components/ui/Navbar.tsx
     ]
 
     const [mobileOpen, setMobileOpen] = useState(false);
