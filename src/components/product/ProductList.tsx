@@ -9,17 +9,19 @@ import { useProducts } from "@/hooks/useProduct"
 
 interface Props {
     productsStatic: IProduct[]
+    productsDinamic: IProduct[]
+    isLoading: boolean
 }
 
 
-export const ProductList: FC<Props> = ({ productsStatic }) => {
-    const { products: productsDinamic, isLoading, setlist, isError } = useProducts('product/list');
+export const ProductList: FC<Props> = ({ productsStatic, productsDinamic, isLoading }) => {
+
 
 
     return (
         <Grid container spacing={4}>
             {
-                productsStatic.length && productsStatic.map((product, i) => (
+                productsStatic && productsStatic.length && productsStatic.map((product, i) => (
                     <ProductCard
                         key={i}
                         product={product}

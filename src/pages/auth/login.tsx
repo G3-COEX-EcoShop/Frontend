@@ -1,9 +1,26 @@
 import LoginForm from '@/components/auth/LoginForm'
 import { BasicoLayout } from '@/components/layout/BasicoLayout'
+import { authLogin } from '@/services/auth'
 import { Grid, Stack, Typography } from '@mui/material'
+import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 const login = () => {
+
+    const { asPath, push, replace } = useRouter();
+
+    async function onSubmit(values: any) {
+        const res = await authLogin(values) as { name: string, error: string }
+        if (res.name) {
+            localStorage.setItem('nameUser', res.name);
+            replace("/user")
+        }
+        if (res.error) {
+            alert(res.error)
+        }
+    }
+
     return (
         <BasicoLayout >
 
@@ -17,11 +34,12 @@ const login = () => {
                     </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                    <LoginForm />
+                    <LoginForm onSubmit={onSubmit} />
                 </Grid>
             </Grid>
         </BasicoLayout>
     )
 }
+
 
 export default login

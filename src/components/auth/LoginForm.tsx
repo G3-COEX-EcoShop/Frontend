@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import {
     Button,
-    Checkbox,
     Divider,
-    FormControlLabel,
     FormHelperText,
     Grid,
     Link,
@@ -21,7 +19,11 @@ import * as Yup from 'yup';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import SocialBtns from './SocialBtns';
-const LoguinForm = () => {
+
+interface prop {
+    onSubmit: (value: any) => void
+}
+const LoguinForm: FC<prop> = ({ onSubmit }) => {
     const [checked, setChecked] = React.useState(false);
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -35,8 +37,8 @@ const LoguinForm = () => {
     return (
         <Formik
             initialValues={{
-                email: 'info@codedthemes.com',
-                password: '123456',
+                email: '',
+                password: '',
                 submit: null
             }}
             validationSchema={Yup.object().shape({
@@ -52,6 +54,8 @@ const LoguinForm = () => {
                     setErrors({ submit: err.message });
                     setSubmitting(false);
                 }
+                onSubmit(values)
+
             }}
         >
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
