@@ -1,7 +1,7 @@
 import { BasicoLayout } from '@/components/layout/BasicoLayout'
-import { Avatar, Button, TextField } from "@mui/material";
+import { Avatar, Button, Link, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-
+import NextLink from 'next/link'
 const User = () => {
     const [user, setUser] = useState({
         name: "John Doe",
@@ -34,6 +34,12 @@ const User = () => {
                 <Button variant="contained" color="primary">
                     Save
                 </Button>
+
+                <Link href={"/dashboard"} component={NextLink} >
+                    <Button variant="text" color="primary"  >
+                        <Typography >dashboard</Typography>
+                    </Button>
+                </Link>
             </div>
         </BasicoLayout>
     )
