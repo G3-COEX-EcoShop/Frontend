@@ -14,9 +14,9 @@ export const Navbar = () => {
 
     const navItems = [
         {
-            text: "Mi Cuenta",
-            icon: <AccountCircleOutlinedIcon />,
-            url: "/"
+            text: "Carrito",
+            icon: <ShoppingCartOutlinedIcon />,
+            url: "/cart/empty"
         },
         {
             text: "Mis pedidos",
@@ -24,10 +24,17 @@ export const Navbar = () => {
             url: "/ordes"
         },
         {
+<<<<<<< HEAD:src/components/UI/Navbar.tsx
             text: "Carrito",
             icon: <ShoppingCartOutlinedIcon />,
             url: "/cart"
         }
+=======
+            text: "Mi Cuenta",
+            icon: <AccountCircleOutlinedIcon />,
+            url: "/user"
+        },
+>>>>>>> 27740354e4726c4f0d61ecf8790818ec6297eb98:src/components/ui/Navbar.tsx
     ]
 
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -61,14 +68,14 @@ export const Navbar = () => {
                 <Box display="flex" sx={{ display: { xs: 'none', sm: 'flex', }, }}>
                     {navItems.map(({ text, icon, url }, i) =>
                     (
-                        <>
-                            <Divider orientation="vertical" flexItem sx={{ margin: "0px 7px" }} key={i} />
-                            <Link href={url} component={NextLink} key={i}>
-                                <Button variant="text" color="secondary" startIcon={icon}>
+                        <Box key={i} sx={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
+                            <Divider orientation="vertical" flexItem sx={{ margin: "0px 7px", }} />
+                            <Link href={url} component={NextLink} >
+                                <Button variant="text" color="secondary" startIcon={icon} >
                                     <Typography sx={{ display: { sm: 'none', md: 'block' }, }}>{text}</Typography>
                                 </Button>
                             </Link>
-                        </>
+                        </Box>
                     ))}
 
                 </Box>

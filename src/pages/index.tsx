@@ -1,92 +1,74 @@
-import NextLink from 'next/link'
-import {  Card, CardActionArea, CardMedia, Grid, Typography} from '@mui/material'
-import { ShopLayout } from '@/components/layout'
-import ListItem from '@mui/material/ListItem';
+import { Typography, Box, Button } from '@mui/material';
+import { ShopLayout } from '@/components/layout';
+import Image from 'next/image'
 import { ProductList } from '@/components/product';
-import { initialData } from '../../database/products';
-import { IProduct } from '../../interfaces';
+import { GetStaticProps } from 'next';
+import { ICategory, IProduct } from '@/interfaces';
+import { FC } from 'react';
 
+interface props {
+  productsStatic: IProduct[],
+  categories: ICategory[]
+}
+const Home: FC<props> = ({ productsStatic, categories }) => {
 
-// const products = [
-//   {
-//     text: "1"
-//   }, {
-//     text: "2"
-//   }, {
-//     text: "3"
-//   }, {
-//     text: "4"
-//   }, {
-//     text: "5"
-//   }, {
-//     text: "6"
-//   },
-// ]
+  function handleCategory(type: string): void {
 
+  }
 
-export default function Home() {
   return (
     <ShopLayout title={'Tienda EcoShop'} pageDescription={'Bienvenido a nuestra tienda de electrónica, donde ofrecemos una amplia variedad de productos de tecnología de vanguardia'} imageFullUrl='https://lh3.googleusercontent.com/u/0/drive-viewer/AAOQEOQnX9lPLVoh3eL1WKMqg2-dZlDDsfO4H_JusGDbkNBFF7ugyWllUCV5wipPARdgpGLp8srtCotMFYWTlynZiHvVe0vA=w1920-h975'>
-{/*       <Typography variant='h1' component="h1">Tienda</Typography>
-      <Typography variant='h2' component="h2" sx={{ mb: 1 }} > EcoShop</Typography>
 
-      <Link href={`/`} component={NextLink}>
-        <Typography>Web</Typography>
-      </Link>
-
-      <Link href={`/dashboard`} component={NextLink}>
-        <Typography>Dashboard</Typography>
-      </Link>
-
-
-      <Grid
-        container
-        spacing={1}
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        alignContent="stretch"
-        wrap="wrap"
-
-      >
+      <Box flexDirection={{ xs: 'column', sm: "row" }} display={'flex'} justifyContent={'space-around'}>
         {
-          products.map((item) => (
-            <Grid item xs={6} sm={4} key={item.text}>
-              <Card>
-                <CardActionArea>
-                  <CardMedia title={item.text} image="" component='img' alt="product" />
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))
-        }
-      </Grid> */}
+          categories.length &&
+          categories.map(({ id, name, description, img_url, state }) => {
+            if (state) {
+              return (
+                <Button size="small" variant="outlined" key={id}>
+                  <Box flexDirection={'row'} onClick={(e) => { handleCategory("") }} justifyItems={'center'} alignItems={'center'} display={'flex'}>
+                    <Image width={40} height={40} src={img_url} alt={`icon ${name}`}>
 
-      <Typography variant='h1' component={'h1'}>Tienda</Typography>
-      <Typography variant='h2' component={'h2'}>Todos los productos</Typography>
+                    </Image>
+                    <Typography variant='subtitle2' component={"span"}>{name}</Typography>
+                  </Box>
+                </Button>
+              )
+            }
+          })}
 
-{/* 
-      <Grid container spacing={ 4 }>
+      </Box>
+      <ProductList productsStatic={productsStatic} />
 
-        {
-          initialData.products.map( product => (
-            <Grid item xs={ 6 } sm={ 4 } key={ product.images } >
-              <Card>
-                <CardActionArea>
-                  <CardMedia image={ `products/${ product.images }` } component='img' alt="product" />
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ) )
-        }    
-
-      </Grid> */}
-
-
-      {/* en products falta terminarlo, el products es para filtrar las catetgorias que escojan los usuarios */}
-      <ProductList products={[ initialData.products as any ]} 
-      />
 
     </ShopLayout>
   )
 }
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+
+  let categories = [] as ICategory[]
+  let products = [] as IProduct[]
+
+  try {
+    const dataProducts = await fetch(`${urlbase}product/list`);
+    if (dataProducts) products = await dataProducts.json()
+    const dataCategories = await fetch(`${urlbase}category/list`);
+    if (dataCategories) categories = await dataCategories.json()
+
+  } catch (error) {
+    console.log(error);
+
+  }
+
+  return {
+    props: {
+      productsStatic: products,
+      categories: categories
+    },
+    revalidate: 28800
+  }
+}
+
+
+export default Home
