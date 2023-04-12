@@ -19,7 +19,7 @@ interface SeedData {
 export const initialData: SeedData = {
     products: [
         {
-            images:"https://res.cloudinary.com/dlrdlubmf/image/upload/v1680119927/EcoShop/Televisor/TV_XIAOMI_43_PULGADAS_UHD_LED_Plano_SmartTV_aoxq9g.jpg",
+            images:"._1473809-00-A_1_2000.jpg",
             title : "TV Xiaomi 43 Pulgadas",
             gender: "televisores",
             description: "Dimensiones: 110 cm P1 4K-UHD, Resolución 4KUHD descubre cada detalle, Tecnología MEMC para imágenes suaves y nitidas, Control remoto Bluetooth activado por voz fácil de usar, Compatible con TDT. No compatible con TV Análoga, Sistema operativo AndroidTV 10, una interfaz fàcil de usar",

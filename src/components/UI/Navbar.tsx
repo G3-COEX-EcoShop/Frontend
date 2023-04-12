@@ -26,7 +26,7 @@ export const Navbar = () => {
         {
             text: "Carrito",
             icon: <ShoppingCartOutlinedIcon />,
-            url: "/cart/empty"
+            url: "/cart"
         }
     ]
 
