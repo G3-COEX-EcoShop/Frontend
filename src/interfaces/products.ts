@@ -4,10 +4,10 @@ export interface IProduct {
   brand: string;
   name: string;
   description: string;
-  urlImg: string;
+  img_url: string;
   stock: number;
   price: number;
-  state: boolean;
+  status: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -17,7 +17,7 @@ export interface ICategory {
   name: string;
   description: string;
   img_url: string;
-  state: boolean;
+  status: boolean;
   createdAt: any;
   updatedAt: any;
 }
