@@ -1,7 +1,9 @@
-import DBPaperbase from "@/components/dashboard/DBPaperbase";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 
 export default function dashboard() {
     return (
-        <DBPaperbase></DBPaperbase>
+        <DashboardLayout>
+
+        </DashboardLayout>
     )
 }

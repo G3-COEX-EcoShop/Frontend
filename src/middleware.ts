@@ -15,18 +15,16 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const requestedPage = req.nextUrl.pathname;
 
-  if (!token) {
-    return NextResponse.rewrite(toLogin(req));
-  }
-  const user = jwt_decode(token?.value + "") as IUserRol;
+  if (token) {
+    const { user } = jwt_decode(token?.value + "") as { user: IUserRol };
 
-  if (requestedPage.includes("dashboard") && !user.Role?.dashboard) {
-    return NextResponse.rewrite(toLogin(req));
-  }
+    if (requestedPage.includes("dashboard") && !user.Role?.dashboard) {
+      return NextResponse.rewrite(toLogin(req));
+    }
 
-  if (user.Role?.dashboard) {
-    NextResponse.next();
-  } else {
+    if (requestedPage.includes("user") && !user) {
+      return NextResponse.rewrite(toLogin(req));
+    }
   }
 
   return NextResponse.next();
@@ -34,5 +32,5 @@ export async function middleware(req: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/dashboard", "/user"],
+  matcher: ["/dashboard/:path*", "/user"],
 };
