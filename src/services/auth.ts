@@ -19,7 +19,6 @@ export const authLogin = async (values: props) => {
       },
       body: JSON.stringify(values),
     });
-    console.log(res);
     if (res.status == 200) {
       if (res) nameUser = await res.json();
     } else if (res.status == 401) {

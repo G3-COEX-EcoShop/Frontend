@@ -2,30 +2,22 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import jwt_decode from "jwt-decode";
 
-function toLogin(req: NextRequest) {
-  const url = req.nextUrl.clone();
-  const requestedPage = req.nextUrl.pathname;
-
-  url.pathname = `/auth/login`;
-  url.search = `p=${requestedPage}`;
-  return url;
-}
-
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const requestedPage = req.nextUrl.pathname;
 
-  if (!token) return NextResponse.rewrite(toLogin(req));
+  if (!token) return NextResponse.redirect(new URL("/auth/login", req.url));
 
   if (token) {
     const { user } = jwt_decode(token?.value + "") as { user: IUserRol };
+    if (!user) return NextResponse.redirect(new URL("/auth/login", req.url));
 
     if (requestedPage.includes("dashboard") && !user.Role?.dashboard) {
-      return NextResponse.rewrite(toLogin(req));
+      return NextResponse.redirect(new URL("/user", req.url));
     }
 
     if (requestedPage.includes("user") && !user) {
-      return NextResponse.rewrite(toLogin(req));
+      return NextResponse.redirect(new URL("/auth/login", req.url));
     }
   }
 
