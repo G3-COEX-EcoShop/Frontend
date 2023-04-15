@@ -7,7 +7,7 @@ import { ICategory, IProduct } from '@/interfaces';
 import { FC } from 'react';
 import { categoriesList } from '@/services/category';
 import { productsList } from '@/services/product';
-import { useProducts } from '@/hooks/useProduct';
+import { UseProducts } from '@/hooks/UseProduct';
 import NextLink from 'next/link'
 
 interface props {
@@ -15,7 +15,7 @@ interface props {
   categories: ICategory[]
 }
 const Home: FC<props> = ({ productsStatic, categories }) => {
-  const { products: productsDinamic, isLoading, setlist, isError } = useProducts('product/list');
+  const { products: productsDinamic, isLoading, setlist, isError } = UseProducts('product/list');
 
 
   return (

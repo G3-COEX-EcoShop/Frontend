@@ -5,7 +5,6 @@ import { FC } from "react"
 import { Grid } from "@mui/material"
 import { ProductCard } from "./ProductCard"
 import { IProduct } from "../../interfaces"
-import { useProducts } from "@/hooks/useProduct"
 
 interface Props {
     productsStatic: IProduct[]

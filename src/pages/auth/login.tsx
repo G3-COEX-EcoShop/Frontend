@@ -3,12 +3,11 @@ import { BasicoLayout } from '@/components/layout/BasicoLayout'
 import { authLogin } from '@/services/auth'
 import { Grid, Stack, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
-import React from 'react'
+import { useRouter as UseRouter } from 'next/router'
 
 const login = () => {
 
-    const { asPath, push, replace } = useRouter();
+    const { asPath, push, replace } = UseRouter();
 
     async function onSubmit(values: any) {
         const res = await authLogin(values) as { name: string, error: string }

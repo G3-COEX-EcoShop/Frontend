@@ -1,6 +1,6 @@
 import { ShopLayout } from '@/components/layout';
 import { ProductList } from '@/components/product';
-import { useProducts } from '@/hooks/useProduct';
+import { UseProducts } from '@/hooks/UseProduct';
 import { ICategory, IProduct } from '@/interfaces';
 import { categoriesList } from '@/services/category';
 import { productsByCategory } from '@/services/product';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const categoryPage: FC<Props> = ({ productsStatic, path, category }) => {
-    const { products: productsDinamic, isLoading, setlist, isError } = useProducts(path);
+    const { products: productsDinamic, isLoading, setlist, isError } = UseProducts(path);
 
     console.log({ productsStatic, path, category });
 
@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
                     img_url: category.img_url,
                     name: category.name,
                     description: category.description,
-                    state: category.state + ""
+                    status: category.status + ""
                 }
             }
         }

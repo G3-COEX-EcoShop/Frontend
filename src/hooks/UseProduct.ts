@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 
-export const useProducts = (url: string, config: SWRConfiguration = {}) => {
+export const UseProducts = (url: string, config: SWRConfiguration = {}) => {
   const [list, setlist] = useState(url);
   const { data, error } = useSWR<IProduct[]>(`${urlbase}${list}`, config);
 
