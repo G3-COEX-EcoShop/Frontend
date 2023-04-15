@@ -15,6 +15,8 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const requestedPage = req.nextUrl.pathname;
 
+  if (!token) return NextResponse.rewrite(toLogin(req));
+
   if (token) {
     const { user } = jwt_decode(token?.value + "") as { user: IUserRol };
 
