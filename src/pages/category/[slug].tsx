@@ -1,6 +1,6 @@
 import { ShopLayout } from '@/components/layout';
 import { ProductList } from '@/components/product';
-import { UseProducts } from '@/hooks/UseProduct';
+import { UseProducts } from '@/hooks/UseProducts';
 import { ICategory, IProduct } from '@/interfaces';
 import { categoriesList } from '@/services/category';
 import { productsByCategory } from '@/services/product';
@@ -20,6 +20,9 @@ const categoryPage: FC<Props> = ({ productsStatic, path, category }) => {
         <ShopLayout title={`Productos de la categoria ${category.name}`} pageDescription={`Todos nuestros productos en la categorias de ${category.name}`} imageFullUrl={category.img_url}>
 
             <ProductList productsStatic={productsStatic} productsDinamic={productsDinamic} isLoading={isLoading} />
+            <pre>
+                {JSON.stringify(productsStatic, null, 2)}
+            </pre>
         </ShopLayout>
     )
 }
@@ -31,6 +34,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     return {
         paths: categories.map((category) => {
             return {
+                //solo se esta enviando slug
                 params: {
                     slug: category.id,
                     img_url: category.img_url,

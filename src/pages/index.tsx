@@ -7,7 +7,7 @@ import { ICategory, IProduct } from '@/interfaces';
 import { FC } from 'react';
 import { categoriesList } from '@/services/category';
 import { productsList } from '@/services/product';
-import { UseProducts } from '@/hooks/UseProduct';
+import { UseProducts } from '@/hooks/UseProducts';
 import NextLink from 'next/link'
 
 interface props {
