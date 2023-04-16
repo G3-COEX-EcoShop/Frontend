@@ -16,8 +16,6 @@ interface Props {
 const categoryPage: FC<Props> = ({ productsStatic, path, category }) => {
     const { products: productsDinamic, isLoading, setlist, isError } = UseProducts(path);
 
-    console.log({ productsStatic, path, category });
-
     return (
         <ShopLayout title={`Productos de la categoria ${category.name}`} pageDescription={`Todos nuestros productos en la categorias de ${category.name}`} imageFullUrl={category.img_url}>
 

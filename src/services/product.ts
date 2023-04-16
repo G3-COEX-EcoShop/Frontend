@@ -20,6 +20,7 @@ export const productsByCategory = async (nameCategory: string) => {
   try {
     const dataProducts = await fetch(urlbase + path);
     if (dataProducts) products = await dataProducts.json();
+    result.data = products;
   } catch (error) {
     console.log(error);
     return result;
