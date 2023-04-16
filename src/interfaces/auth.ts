@@ -1,4 +1,4 @@
-interface IUserRol {
+export interface IUserRol {
   id: number;
   name: string;
   email: string;
@@ -12,7 +12,7 @@ interface IUserRol {
   Role: Role;
 }
 
-interface Role {
+export interface Role {
   id: string;
   name: string;
   description: string;
@@ -29,7 +29,7 @@ interface Role {
   reviewsPermission: Permission;
 }
 
-interface Permission {
+export interface Permission {
   id: string;
   name: string;
   can_manager: boolean;

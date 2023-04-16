@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import jwt_decode from "jwt-decode";
+import { IUserRol } from "./interfaces";
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
@@ -9,7 +10,7 @@ export async function middleware(req: NextRequest) {
   if (!token) return NextResponse.redirect(new URL("/auth/login", req.url));
 
   if (token) {
-    const { user } = jwt_decode(token?.value + "") as { user: IUserRol };
+    const { user } = jwt_decode<{ user: IUserRol }>(token?.value + "");
     if (!user) return NextResponse.redirect(new URL("/auth/login", req.url));
 
     if (requestedPage.includes("dashboard") && !user.Role?.dashboard) {

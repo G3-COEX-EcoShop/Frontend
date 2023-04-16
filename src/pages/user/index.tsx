@@ -4,24 +4,37 @@ import { useState } from "react";
 import NextLink from 'next/link';
 import Cookies from 'js-cookie';
 import { useRouter as UseRouter } from 'next/router'
+import { UseUser } from '@/hooks/UseUser';
+import { getIdAndEmailUser } from '@/utils/token';
+
+const getIdUser = () => {
+    const token = Cookies.get('token')
+    if (!token) return
+
+    const user = getIdAndEmailUser(token)
+    return user.id + ""
+}
 
 const User = () => {
     const { replace } = UseRouter();
+
+
+    const { user, isError, isLoading } = UseUser(getIdUser());
 
     const OnclickSalir = () => {
         Cookies.remove('token');
         replace("/")
     }
+
+    console.log(user);
+
     return (
         <BasicoLayout >
 
             <div>
-                <TextField
-                    label="Name"
-                />
-                <TextField
-                    label="Email"
-                />
+                <Typography>{user?.name}</Typography>
+                <Typography>{user?.email}</Typography>
+
                 <Button variant="contained" color="primary">
                     Save
                 </Button>
