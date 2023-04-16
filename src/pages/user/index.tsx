@@ -21,9 +21,7 @@ const User = () => {
 
     const OnclickSalir = () => {
         Cookies.remove('token');
-        replace("/").then(() => {
-            reload();
-        });
+        reload();
     }
 
     return (
