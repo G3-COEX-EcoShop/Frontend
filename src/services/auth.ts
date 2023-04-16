@@ -1,13 +1,10 @@
-import { ICategory } from "@/interfaces";
-import { string } from "yup";
-const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
-
 interface props {
   email: string;
   password: string;
 }
 
 export const authLogin = async (values: props) => {
+  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
   let nameUser = {} as { name: string };
   let error = {} as { message: string };
   try {

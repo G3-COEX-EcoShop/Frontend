@@ -4,7 +4,6 @@ import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useRouter } from "next/router";
 
-const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 const SocialBtns = () => {
     const router = useRouter();
 
@@ -13,6 +12,7 @@ const SocialBtns = () => {
     };
 
     const gihubHandler = async () => {
+        const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
         try {
             window.location.href = `${urlbase}auth/github`
         } catch (error) {
