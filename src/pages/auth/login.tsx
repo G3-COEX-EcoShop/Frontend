@@ -7,13 +7,13 @@ import { useRouter as UseRouter } from 'next/router'
 
 const login = () => {
 
-    const { asPath, push, replace } = UseRouter();
+    const { replace, reload } = UseRouter();
 
     async function onSubmit(values: any) {
         const res = await authLogin(values) as { name: string, error: string }
         if (res.name) {
             localStorage.setItem('nameUser', res.name);
-            replace("/user")
+            replace("/user").then(() => { reload() })
         }
         if (res.error) {
             alert(res.error)

@@ -16,17 +16,15 @@ const getIdUser = () => {
 }
 
 const User = () => {
-    const { replace } = UseRouter();
-
-
+    const { reload, replace } = UseRouter();
     const { user, isError, isLoading } = UseUser(getIdUser());
 
     const OnclickSalir = () => {
         Cookies.remove('token');
-        replace("/")
+        replace("/").then(() => {
+            reload();
+        });
     }
-
-    console.log(user);
 
     return (
         <BasicoLayout >

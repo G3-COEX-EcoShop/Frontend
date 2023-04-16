@@ -48,7 +48,6 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
   )
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 
   let categories = await categoriesList();
   let products = await productsList();

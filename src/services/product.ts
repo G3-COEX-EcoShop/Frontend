@@ -15,7 +15,7 @@ export const productsList = async () => {
 
 export const productsByCategory = async (nameCategory: string) => {
   let products = [] as IProduct[];
-  const path = `product/listbycategory?id=${nameCategory}`;
+  const path = `product/listByCategory?id=${nameCategory}`;
   let result = { data: products, path: path };
   try {
     const dataProducts = await fetch(urlbase + path);
