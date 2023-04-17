@@ -3,16 +3,21 @@ import { BasicoLayout } from '@/components/layout/BasicoLayout'
 import { authLogin } from '@/services/auth'
 import { Grid, Stack, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
-import { useRouter as UseRouter } from 'next/router'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
-const login = () => {
+const Login = () => {
 
-    const { replace, reload } = UseRouter();
+    const { replace, reload } = useRouter();
+    const [isLoginReq, setisLoginReq] = useState(false)
 
     async function onSubmit(values: any) {
+        setisLoginReq(true)
         const res = await authLogin(values) as { name: string, error: string }
+        setisLoginReq(false)
         if (res.name) {
             localStorage.setItem('nameUser', res.name);
+            console.log("replace");
             replace("/user")
             if (res.error) {
                 alert(res.error)
@@ -33,7 +38,7 @@ const login = () => {
                     </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                    <LoginForm onSubmit={onSubmit} />
+                    <LoginForm onSubmit={onSubmit} isLoginReq={isLoginReq} />
                 </Grid>
             </Grid>
         </BasicoLayout>
@@ -41,4 +46,4 @@ const login = () => {
 }
 
 
-export default login
+export default Login

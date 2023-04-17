@@ -7,15 +7,16 @@ import { useRouter as UseRouter } from 'next/router'
 import { UseUser } from '@/hooks/UseUser';
 import { getIdAndEmailUser } from '@/utils/token';
 
-const getIdUser = () => {
-    const token = Cookies.get('token')
-    if (!token) return
-
-    const user = getIdAndEmailUser(token)
-    return user.id + ""
-}
 
 const User = () => {
+
+    const getIdUser = () => {
+        const token = Cookies.get('token')
+        if (!token) return
+
+        const user = getIdAndEmailUser(token)
+        return user.id + ""
+    }
     const { reload, replace } = UseRouter();
     const { user, isError, isLoading } = UseUser(getIdUser());
 

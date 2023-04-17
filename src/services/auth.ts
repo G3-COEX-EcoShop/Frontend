@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 interface props {
   email: string;
   password: string;
@@ -17,7 +19,10 @@ export const authLogin = async (values: props) => {
       body: JSON.stringify(values),
     });
     if (res.status == 200) {
-      if (res) nameUser = await res.json();
+      if (res) {
+        nameUser = await res.json();
+        console.log(res);
+      }
     } else if (res.status == 401) {
       if (res) error = await res.json();
     }

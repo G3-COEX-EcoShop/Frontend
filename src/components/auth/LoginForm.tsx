@@ -22,8 +22,9 @@ import SocialBtns from './SocialBtns';
 
 interface prop {
     onSubmit: (value: any) => void
+    isLoginReq: boolean
 }
-const LoguinForm: FC<prop> = ({ onSubmit }) => {
+const LoguinForm: FC<prop> = ({ onSubmit, isLoginReq }) => {
     const [checked, setChecked] = React.useState(false);
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -133,7 +134,7 @@ const LoguinForm: FC<prop> = ({ onSubmit }) => {
                         <Grid item xs={12}>
                             <Button
                                 disableElevation
-                                disabled={isSubmitting}
+                                disabled={isLoginReq}
                                 fullWidth
                                 size="large"
                                 type="submit"
