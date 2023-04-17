@@ -1,23 +1,22 @@
 import { BasicoLayout } from '@/components/layout/BasicoLayout'
 import { Avatar, Button, Link, TextField, Typography } from "@mui/material";
-import { useState } from "react";
 import NextLink from 'next/link';
 import Cookies from 'js-cookie';
-import { useRouter as UseRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { UseUser } from '@/hooks/UseUser';
 import { getIdAndEmailUser } from '@/utils/token';
 
+const getIdUser = () => {
+    const token = Cookies.get('token')
+    if (!token) return
+
+    const user = getIdAndEmailUser(token)
+    return user.id + ""
+}
 
 const User = () => {
 
-    const getIdUser = () => {
-        const token = Cookies.get('token')
-        if (!token) return
-
-        const user = getIdAndEmailUser(token)
-        return user.id + ""
-    }
-    const { reload, replace } = UseRouter();
+    const { reload } = useRouter();
     const { user, isError, isLoading } = UseUser(getIdUser());
 
     const OnclickSalir = () => {

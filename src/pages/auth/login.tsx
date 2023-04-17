@@ -17,7 +17,6 @@ const Login = () => {
         setisLoginReq(false)
         if (res.name) {
             localStorage.setItem('nameUser', res.name);
-            console.log("replace");
             replace("/user")
             if (res.error) {
                 alert(res.error)
