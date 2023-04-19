@@ -43,6 +43,4 @@ const Login = () => {
         </BasicoLayout>
     )
 }
-
-
 export default Login

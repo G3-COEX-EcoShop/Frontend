@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router'
 import { UseUser } from '@/hooks/UseUser';
 import { getIdAndEmailUser } from '@/utils/token';
+import { GetServerSideProps } from 'next';
 
 const getIdUser = () => {
     const token = Cookies.get('token')
@@ -47,5 +48,6 @@ const User = () => {
         </BasicoLayout>
     )
 }
+
 
 export default User
