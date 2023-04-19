@@ -21,7 +21,7 @@ export const authLogin = async (values: props) => {
     if (res.status == 200) {
       if (res) {
         nameUser = await res.json();
-        Cookies.set("token", nameUser.token);
+        //Cookies.set("token", nameUser.token);
       }
     } else if (res.status == 401) {
       if (res) error = await res.json();
