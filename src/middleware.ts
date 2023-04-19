@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import { IUserRol } from "./interfaces";
 import Cookies from "js-cookie";
 export async function middleware(req: NextRequest) {
+  console.log("middleware");
   const token = req.cookies.get("token");
   const requestedPage = req.nextUrl.pathname;
   console.log({ token });
