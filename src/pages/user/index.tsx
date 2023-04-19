@@ -52,14 +52,7 @@ export async function getServerSideProps() {
     const token = Cookies.get('token')
     console.log("server side");
     console.log({ token });
-    if (!token) {
-        return {
-            redirect: {
-                destination: '/auth/login',
-                permanent: false,
-            }
-        }
-    }
+
 
 
 
