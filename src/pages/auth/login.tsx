@@ -16,7 +16,6 @@ const Login = () => {
         const res = await authLogin(values) as { name: string, error: string }
         setisLoginReq(false)
         if (res.name) {
-            localStorage.setItem('nameUser', res.name);
             replace("/user")
             if (res.error) {
                 alert(res.error)
@@ -43,4 +42,24 @@ const Login = () => {
         </BasicoLayout>
     )
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+
+    if (context.query.t) {
+        context.res.setHeader("Set-cookie", `token=${context.query.t};path=/`)
+        return {
+            redirect: {
+                destination: '/user',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: {
+        }
+    }
+}
+
 export default Login

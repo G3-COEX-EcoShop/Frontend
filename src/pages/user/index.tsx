@@ -48,15 +48,4 @@ const User = () => {
         </BasicoLayout>
     )
 }
-export async function getServerSideProps() {
-    const token = Cookies.get('token')
-    console.log("server side");
-    console.log({ token });
-
-
-
-
-    return {}
-}
-
 export default User
