@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const ProductCard: FC<Props> = ({ product: {
-  id, category, brand, name, description, urlImg, stock, state
+  id, category, brand, name, description, img_url, stock, status
 }, price, isLoading }) => {
 
 
@@ -28,7 +28,7 @@ export const ProductCard: FC<Props> = ({ product: {
 
   return (
     <>
-      {state &&
+      {status &&
         <Grid item
           xs={6}
           sm={4}
@@ -37,11 +37,11 @@ export const ProductCard: FC<Props> = ({ product: {
         >
 
           <Card>
-            <NextLink href="/product/slug" passHref prefetch={false} >
+            <NextLink href={`/product/${id}`} passHref prefetch={false} >
               <Link component="span">
                 <CardActionArea>
                   <CardMedia
-                    image={urlImg}
+                    image={img_url}
                     component='img'
                     className='fadeIn'
                     alt={name} />

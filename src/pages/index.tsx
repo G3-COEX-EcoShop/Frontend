@@ -7,7 +7,7 @@ import { ICategory, IProduct } from '@/interfaces';
 import { FC } from 'react';
 import { categoriesList } from '@/services/category';
 import { productsList } from '@/services/product';
-import { useProducts } from '@/hooks/useProduct';
+import { UseProducts } from '@/hooks/UseProducts';
 import NextLink from 'next/link'
 
 interface props {
@@ -15,17 +15,16 @@ interface props {
   categories: ICategory[]
 }
 const Home: FC<props> = ({ productsStatic, categories }) => {
-  const { products: productsDinamic, isLoading, setlist, isError } = useProducts('product/list');
+  const { products: productsDinamic, isLoading, setlist, isError } = UseProducts('product/list');
 
 
   return (
     <ShopLayout title={'Tienda EcoShop'} pageDescription={'Bienvenido a nuestra tienda de electrónica, donde ofrecemos una amplia variedad de productos de tecnología de vanguardia'} imageFullUrl='https://lh3.googleusercontent.com/u/0/drive-viewer/AAOQEOQnX9lPLVoh3eL1WKMqg2-dZlDDsfO4H_JusGDbkNBFF7ugyWllUCV5wipPARdgpGLp8srtCotMFYWTlynZiHvVe0vA=w1920-h975'>
-
       <Box flexDirection={{ xs: 'column', sm: "row" }} display={'flex'} justifyContent={'space-around'}>
         {
           categories.length &&
-          categories.map(({ id, name, description, img_url, state }) => {
-            if (state) {
+          categories.map(({ id, name, description, img_url, status }) => {
+            if (status) {
               return (
                 <Link component={NextLink} key={id} href={`/category/${id}`}>
                   <Button size="small" variant="outlined" >
@@ -49,7 +48,6 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
   )
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 
   let categories = await categoriesList();
   let products = await productsList();

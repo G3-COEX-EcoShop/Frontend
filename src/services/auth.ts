@@ -1,6 +1,4 @@
-import { ICategory } from "@/interfaces";
-import { string } from "yup";
-const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+import Cookies from "js-cookie";
 
 interface props {
   email: string;
@@ -8,20 +6,23 @@ interface props {
 }
 
 export const authLogin = async (values: props) => {
-  let nameUser = {} as { name: string };
+  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+  let nameUser = {} as { name: string; token: string };
   let error = {} as { message: string };
   try {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
     const res = await fetch(`${urlbase}auth/login`, {
       method: "POST",
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: myHeaders,
       body: JSON.stringify(values),
     });
-    console.log(res);
     if (res.status == 200) {
-      if (res) nameUser = await res.json();
+      if (res) {
+        nameUser = await res.json();
+        Cookies.set("token", nameUser.token);
+      }
     } else if (res.status == 401) {
       if (res) error = await res.json();
     }

@@ -1,5 +1,7 @@
 import { IProduct } from "@/interfaces";
-const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+import products from "@/pages/dashboard/products";
+import path from "path";
+const urlbase = process.env.NEXT_PUBLIC_URL_BASE || "";
 
 export const productsList = async () => {
   let products = [] as IProduct[];
@@ -12,14 +14,32 @@ export const productsList = async () => {
   }
   return products;
 };
+export const productsQuery = async (id: string) => {
+  let result = { data: {}, path: "" };
+  result.data = {} as IProduct;
+  result.path = `product/query?id=${id}`;
+
+  try {
+    const dataProduct = await fetch(urlbase + result.path + "");
+
+    if (dataProduct) {
+      const products = await dataProduct.json();
+      result.data = products;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return result;
+};
 
 export const productsByCategory = async (nameCategory: string) => {
   let products = [] as IProduct[];
-  const path = `product/listbycategory?id=${nameCategory}`;
+  const path = `product/listByCategory?id=${nameCategory}`;
   let result = { data: products, path: path };
   try {
     const dataProducts = await fetch(urlbase + path);
     if (dataProducts) products = await dataProducts.json();
+    result.data = products;
   } catch (error) {
     console.log(error);
     return result;

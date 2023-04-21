@@ -2,14 +2,23 @@ import { Button, Stack } from '@mui/material';
 import React from 'react'
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
-const SocialBtns = () => {
+import { useRouter } from "next/router";
 
-    const googleHandler = async () => {
-        // login || singup
+const SocialBtns = () => {
+    const router = useRouter();
+
+    const googleHandler = () => {
+
     };
 
     const gihubHandler = async () => {
-        // login || singup
+        const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+        try {
+            window.location.href = `${urlbase}auth/github`
+        } catch (error) {
+            console.log(error);
+
+        }
     };
 
 

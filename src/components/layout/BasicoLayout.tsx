@@ -7,6 +7,7 @@ import Image from 'next/image'
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from "next/router";
+
 export const BasicoLayout: FC<PropsWithChildren> = ({ children
 }) => {
     const router = useRouter();

@@ -1,42 +1,51 @@
 import { BasicoLayout } from '@/components/layout/BasicoLayout'
-import { Avatar, Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { Avatar, Button, Link, TextField, Typography } from "@mui/material";
+import NextLink from 'next/link';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router'
+import { UseUser } from '@/hooks/UseUser';
+import { getIdAndEmailUser } from '@/utils/token';
+import { GetServerSideProps } from 'next';
+
+const getIdUser = () => {
+    const token = Cookies.get('token')
+    if (!token) return
+
+    const user = getIdAndEmailUser(token)
+    return user.id + ""
+}
 
 const User = () => {
-    const [user, setUser] = useState({
-        name: "John Doe",
-        email: "johndoe@example.com",
-        avatarUrl: "https://i.pravatar.cc/150?img=3",
-    });
 
-    const handleNameChange = (e: any) => {
-        setUser({ ...user, name: e.target.value });
-    };
+    const { reload } = useRouter();
+    const { user, isError, isLoading } = UseUser(getIdUser());
 
-    const handleEmailChange = (e: any) => {
-        setUser({ ...user, email: e.target.value });
-    };
+    const OnclickSalir = () => {
+        Cookies.remove('token');
+        reload();
+    }
+
     return (
         <BasicoLayout >
 
             <div>
-                <Avatar src={user.avatarUrl} />
-                <TextField
-                    label="Name"
-                    value={user.name}
-                    onChange={handleNameChange}
-                />
-                <TextField
-                    label="Email"
-                    value={user.email}
-                    onChange={handleEmailChange}
-                />
+                <Typography>{user?.name}</Typography>
+                <Typography>{user?.email}</Typography>
+
                 <Button variant="contained" color="primary">
                     Save
+                </Button>
+
+                <Link href={"/dashboard"} component={NextLink} >
+                    <Button variant="text" color="primary"  >
+                        <Typography >dashboard</Typography>
+                    </Button>
+                </Link>
+                <Button variant="contained" color="primary" onClick={OnclickSalir} >
+                    <Typography >Salir</Typography>
                 </Button>
             </div>
         </BasicoLayout>
     )
 }
-
 export default User

@@ -4,20 +4,22 @@ import { authLogin } from '@/services/auth'
 import { Grid, Stack, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import React from 'react'
+import { useState } from 'react'
 
-const login = () => {
+const Login = () => {
 
-    const { asPath, push, replace } = useRouter();
+    const { replace, reload } = useRouter();
+    const [isLoginReq, setisLoginReq] = useState(false)
 
     async function onSubmit(values: any) {
+        setisLoginReq(true)
         const res = await authLogin(values) as { name: string, error: string }
+        setisLoginReq(false)
         if (res.name) {
-            localStorage.setItem('nameUser', res.name);
             replace("/user")
-        }
-        if (res.error) {
-            alert(res.error)
+            if (res.error) {
+                alert(res.error)
+            }
         }
     }
 
@@ -34,12 +36,30 @@ const login = () => {
                     </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                    <LoginForm onSubmit={onSubmit} />
+                    <LoginForm onSubmit={onSubmit} isLoginReq={isLoginReq} />
                 </Grid>
             </Grid>
         </BasicoLayout>
     )
 }
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
-export default login
+
+    if (context.query.t) {
+        context.res.setHeader("Set-cookie", `token=${context.query.t};path=/`)
+        return {
+            redirect: {
+                destination: '/user',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: {
+        }
+    }
+}
+
+export default Login

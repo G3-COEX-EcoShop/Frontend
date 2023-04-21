@@ -13,7 +13,8 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import HomeIcon from '@mui/icons-material/Home';
-
+import { Link } from "@mui/material";
+import NextLink from 'next/link'
 const categories = [
     {
         id: "-",
@@ -21,65 +22,72 @@ const categories = [
             {
                 id: "Usuarios",
                 icon: <AccountCircleOutlinedIcon />,
-                active: true,
+                active: false,
+                href: "/dashboard"
             },
-            { id: "Productos", icon: <Inventory2OutlinedIcon /> },
-            { id: "Categorias", icon: <CategoryOutlinedIcon /> },
+            {
+                id: "Productos",
+                icon: <Inventory2OutlinedIcon />,
+                active: true,
+                href: "/dashboard/products"
+            },
+            {
+                id: "Categorias",
+                icon: <CategoryOutlinedIcon />,
+                active: false,
+                href: "/dashboard"
+            },
         ],
     },
     {
         id: "Tienda",
         children: [
-            { id: "Pedidos", icon: <ShoppingCartOutlinedIcon /> },
+            {
+                id: "Pedidos", icon: <ShoppingCartOutlinedIcon />,
+                active: false,
+                href: "/dashboard"
+            },
 
         ],
     },
 ];
 
-const item = {
-    py: "2px",
-    px: 3,
-    color: "rgba(255, 255, 255, 0.7)",
-    "&:hover, &:focus": {
-        bgcolor: "rgba(255, 255, 255, 0.08)",
-    },
-};
 
-const itemCategory = {
-    boxShadow: "0 -1px 0 rgb(255,255,255,0.1) inset",
-    py: 1.5,
-    px: 3,
-};
 
 export default function DBNavigator(props: DrawerProps) {
     const { ...other } = props;
 
     return (
-        <Drawer variant="permanent" {...other}>
-            <List disablePadding>
+        <Drawer variant="permanent" {...other} >
+            <List>
                 <ListItem
-                    sx={{ ...item, ...itemCategory, fontSize: 22, color: "#fff" }}
+                    sx={{ fontSize: 22, }}
                 >
                     ECO
                 </ListItem>
-                <ListItem sx={{ ...item, ...itemCategory }}>
-                    <ListItemIcon>
-                        <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText>Web-Tienda</ListItemText>
-                </ListItem>
+                <Link href="/" component={NextLink} color={"black"}>
+                    <ListItem sx={{}}>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText>Web-Tienda</ListItemText>
+                    </ListItem>
+                </Link>
                 {categories.map(({ id, children }) => (
-                    <Box key={id} sx={{ bgcolor: "#101F33" }}>
+                    <Box key={id} sx={{}}>
                         <ListItem sx={{ py: 2, px: 3 }}>
-                            <ListItemText sx={{ color: "#fff" }}>{id}</ListItemText>
+                            <ListItemText sx={{}}>{id}</ListItemText>
                         </ListItem>
-                        {children.map(({ id: childId, icon, active }) => (
-                            <ListItem disablePadding key={childId}>
-                                <ListItemButton selected={active} sx={item}>
-                                    <ListItemIcon>{icon}</ListItemIcon>
-                                    <ListItemText>{childId}</ListItemText>
-                                </ListItemButton>
-                            </ListItem>
+                        {children.map(({ id: childId, icon, active, href }) => (
+                            <Link href={href} component={NextLink} key={childId} color={"black"}>
+                                <ListItem disablePadding>
+                                    <ListItemButton selected={active} >
+                                        <ListItemIcon>{icon}</ListItemIcon>
+                                        <ListItemText>{childId}</ListItemText>
+                                    </ListItemButton>
+                                </ListItem>
+
+                            </Link>
                         ))}
                         <Divider sx={{ mt: 2 }} />
                     </Box>
