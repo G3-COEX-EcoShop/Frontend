@@ -59,7 +59,7 @@ export const HistoryPage = () => {
                     pageSize={ 10 }
                     rowsPerPageOptions={ [10] }
                 />
-            </Grid>  
+            </Grid>
         </Grid>
     </ShopLayout>
   )

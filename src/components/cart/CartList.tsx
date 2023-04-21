@@ -4,9 +4,6 @@ import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from "
 import { ItemCounter } from "../ui";
 
 
-const productInCart = [
-    initialData.products[0]
-]
 
 interface Props {
     editable?: boolean
