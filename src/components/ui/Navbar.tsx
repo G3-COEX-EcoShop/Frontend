@@ -21,7 +21,7 @@ export const Navbar = () => {
         {
             text: "Mis pedidos",
             icon: <StorefrontOutlinedIcon />,
-            url: "/ordes"
+            url: "/ordes/history"
         },
         {
             text: "Mi Cuenta",

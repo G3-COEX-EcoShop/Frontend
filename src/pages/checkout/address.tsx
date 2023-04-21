@@ -48,7 +48,7 @@ export const AddressPage = () => {
 
         <Box sx={{ mt:5 }} display='flex' justifyContent='center' >
             <Button color="primary" className="circular-btn" size="large" >
-                Revisar pedido
+                Guardar pedido
             </Button>
         </Box>
 

@@ -17,9 +17,9 @@ const ProductPage = (product: any) => {
         <Grid item xs={12} sm={7}>
           {/*  se creo el slideshow */}
 
-          {/* <ProductSlidesShow 
+           <ProductSlidesShow 
               images={ product.images }
-            /> */}
+            /> 
         </Grid>
 
         <Grid item xs={12} sm={5} >
@@ -48,8 +48,6 @@ const ProductPage = (product: any) => {
               <Typography variant='subtitle2' > Descripción </Typography>
               <Typography variant='body2' > {product.summary} </Typography>
             </Box>
-
-
           </Box>
 
         </Grid>

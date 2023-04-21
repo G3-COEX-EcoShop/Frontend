@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { FC, PropsWithChildren } from "react";
-import { Navbar, SideMenu } from "../ui";
 import { AppBar, IconButton, Toolbar } from "@mui/material";
 
 import NextLink from 'next/link'
