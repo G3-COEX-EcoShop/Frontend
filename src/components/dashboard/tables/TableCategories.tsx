@@ -22,7 +22,8 @@ const TableCategories = ({ data }: props) => {
     const [currenCategory, setcurrenCategory] = useState<ICategory | null>(null)
 
 
-    const handleCreateNewRow = (values: ICategory) => {
+    const handleCreateNewRow = (values: ICategory, isNew: boolean) => {
+        console.log({ values, isNew });
 
     };
 

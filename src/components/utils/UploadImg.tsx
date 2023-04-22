@@ -3,13 +3,14 @@ import { ChangeEvent, useState } from "react";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import Image from 'next/image'
 interface props {
+    imgInit: string | undefined;
     setUrl: (url: string,) => void;
     seterror: (err: string,) => void;
 }
 
-const UploadImg = ({ setUrl, seterror }: props) => {
+const UploadImg = ({ setUrl, seterror, imgInit }: props) => {
     const [imageAlt, setimageAlt] = useState("");
-    const [img, setimg] = useState("");
+    const [img, setimg] = useState(imgInit);
     const [loading, setloading] = useState(false);
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {

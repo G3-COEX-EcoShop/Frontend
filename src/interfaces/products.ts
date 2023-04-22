@@ -18,6 +18,6 @@ export interface ICategory {
   description: string;
   img_url: string;
   status: boolean;
-  createdAt: any;
-  updatedAt: any;
+  createdAt?: any;
+  updatedAt?: any;
 }
