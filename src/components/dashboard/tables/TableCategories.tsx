@@ -22,9 +22,34 @@ const TableCategories = ({ data }: props) => {
     const [currenCategory, setcurrenCategory] = useState<ICategory | null>(null)
 
 
-    const handleCreateNewRow = (values: ICategory, isNew: boolean) => {
-        console.log({ values, isNew });
+    const handleCreateNewRow = async (values: ICategory, isNew: boolean) => {
+        const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(values),
+        };
+        if (isNew) {
+            try {
+                const category = await fetch(`${urlbase}category/add`, requestOptions);
+                if (category) {
+                    alert("nueva Categoria agregada")
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            try {
+                const category = await fetch(`${urlbase}category/update`, requestOptions);
+                if (category) {
+                    alert("Categoria editada")
+                }
+            } catch (error) {
+                console.log(error);
 
+            }
+
+        }
     };
 
 
