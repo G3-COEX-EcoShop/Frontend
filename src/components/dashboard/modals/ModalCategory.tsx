@@ -1,8 +1,6 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField, TextareaAutosize, Typography, } from "@mui/material";
-import { useState } from "react";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Switch, TextField, TextareaAutosize, Typography, } from "@mui/material";
 
 import { ICategory } from "@/interfaces";
-import { Label } from "@mui/icons-material";
 
 interface CreateModalProps {
     data: ICategory | null;
@@ -23,6 +21,8 @@ export const ModalCategory = ({
         // onSubmit(values);
         onClose();
     };
+    console.log(data);
+
 
     return (
         <Dialog open={open}>
@@ -43,6 +43,15 @@ export const ModalCategory = ({
                         />
                         <Typography marginTop={2}>Descripcion</Typography>
                         <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} />
+
+                        <Box display={"flex"} alignItems={"center"}>
+                            <Typography>Estado </Typography>
+                            <Typography>{data?.status} </Typography>
+                            <Switch defaultChecked={data?.status} />
+
+                        </Box>
+
+
 
 
                     </Stack>
