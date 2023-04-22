@@ -11,6 +11,7 @@ import { ModalUser } from '../modals/ModalUser';
 import { ICategory, IProduct } from '@/interfaces';
 import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
+import { headerAuth } from '@/utils/utils';
 
 
 interface props {
@@ -24,15 +25,17 @@ const TableCategories = ({ data }: props) => {
 
     const handleCreateNewRow = async (values: ICategory, isNew: boolean) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+        console.log({ values });
+
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: headerAuth(),
             body: JSON.stringify(values),
         };
         if (isNew) {
             try {
                 const category = await fetch(`${urlbase}category/add`, requestOptions);
-                if (category) {
+                if (category.ok) {
                     alert("nueva Categoria agregada")
                 }
             } catch (error) {
@@ -40,8 +43,10 @@ const TableCategories = ({ data }: props) => {
             }
         } else {
             try {
-                const category = await fetch(`${urlbase}category/update`, requestOptions);
-                if (category) {
+                requestOptions.method = "PUT"
+                const category = await fetch(`${urlbase}category/update`,
+                    requestOptions);
+                if (category.ok) {
                     alert("Categoria editada")
                 }
             } catch (error) {

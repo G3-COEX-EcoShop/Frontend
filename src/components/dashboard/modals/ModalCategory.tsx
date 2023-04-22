@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Switch, TextField, TextareaAutosize, Typography, useMediaQuery, useTheme, } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, Stack, Switch, TextField, TextareaAutosize, Typography, useMediaQuery, useTheme, } from "@mui/material";
 
 import { ICategory } from "@/interfaces";
 import { FormEvent, useState } from "react";
@@ -56,15 +56,14 @@ export const ModalCategory = ({
                         <TextField
                             id="name"
                             label="Nombre"
-                            value={data?.name}
+                            defaultValue={data?.name}
                             required
                         />
                         <Typography marginTop={2}>Descripcion</Typography>
-                        <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} required />
+                        <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} defaultValue={data?.description} required />
 
                         <Box display={"flex"} alignItems={"center"}>
                             <Typography>Estado </Typography>
-                            <Typography>{data?.status} </Typography>
                             <Switch defaultChecked={data?.status} />
 
                         </Box>
