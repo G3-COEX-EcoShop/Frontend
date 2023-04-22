@@ -26,16 +26,16 @@ const categories = [
                 href: "/dashboard"
             },
             {
-                id: "Productos",
-                icon: <Inventory2OutlinedIcon />,
-                active: true,
-                href: "/dashboard/products"
-            },
-            {
                 id: "Categorias",
                 icon: <CategoryOutlinedIcon />,
                 active: false,
-                href: "/dashboard"
+                href: "/dashboard/categories"
+            },
+            {
+                id: "Productos",
+                icon: <Inventory2OutlinedIcon />,
+                active: false,
+                href: "/dashboard/products"
             },
         ],
     },

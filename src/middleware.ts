@@ -6,7 +6,6 @@ import { IUserRol } from "./interfaces";
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const requestedPage = req.nextUrl.pathname;
-  console.log({ token });
 
   if (!token?.value)
     return NextResponse.redirect(new URL("/auth/login", req.url));

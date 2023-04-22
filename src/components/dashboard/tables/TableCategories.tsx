@@ -8,52 +8,52 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { ModalUser } from '../modals/ModalUser';
-import { IProduct } from '@/interfaces';
+import { ICategory, IProduct } from '@/interfaces';
+import Image from 'next/image';
+import { ModalCategory } from '../modals/ModalCategory';
 
 
 interface props {
-    data: IProduct[]
+    data: ICategory[]
 }
 
-const TableMaterial = ({ data }: props) => {
+const TableCategories = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
+    const [currenCategory, setcurrenCategory] = useState<ICategory | null>(null)
 
 
-    const handleCreateNewRow = (values: IProduct) => {
+    const handleCreateNewRow = (values: ICategory) => {
 
     };
 
 
-    const columns = useMemo<MRT_ColumnDef<IProduct>[]>(
+    const columns = useMemo<MRT_ColumnDef<ICategory>[]>(
         () => [
             {
-                accessorKey: 'id',
-                header: 'ID',
-                enableColumnOrdering: false,
-                enableEditing: false, //disable editing on this column
-                enableSorting: true,
-                size: 0,
-            }, {
                 accessorKey: 'name',
                 header: 'Nombre',
-            }, {
-                accessorKey: 'category',
-                header: 'Categoria',
             },
             {
-                accessorKey: 'brand',
-                header: 'Marca',
+                accessorKey: 'img_url',
+                header: 'imagen',
+                Cell: ({ renderedCellValue, row }) => {
+                    if (renderedCellValue) {
+                        return <Image
+                            key={row.id}
+                            width={100}
+                            height={100}
+                            src={renderedCellValue as string}
+                            alt="imagen de categoria"
+                        />
+                    }
 
-            }, {
-                accessorKey: 'price',
-                header: 'Precio',
-
-            }, {
-                accessorKey: 'stock',
-                header: 'Cantidad',
-                size: 80,
-
-            }, {
+                }
+            },
+            {
+                accessorKey: 'description',
+                header: 'Descripcion',
+            },
+            {
                 accessorKey: 'status',
                 header: 'Activado',
                 Cell: ({ renderedCellValue, row }) => {
@@ -79,7 +79,7 @@ const TableMaterial = ({ data }: props) => {
 
                 muiTableBodyRowProps={({ row }) => ({
                     onClick: (event) => {
-                        console.info(row.original);
+                        setcurrenCategory(row.original)
                         setModalOpen(true)
                     },
                     sx: {
@@ -89,7 +89,10 @@ const TableMaterial = ({ data }: props) => {
                 renderTopToolbarCustomActions={() => (
                     <Button
                         color="primary"
-                        onClick={() => setModalOpen(true)}
+                        onClick={() => {
+                            setcurrenCategory(null)
+                            setModalOpen(true)
+                        }}
                         startIcon={<AddIcon />}
                         variant="outlined"
 
@@ -100,8 +103,8 @@ const TableMaterial = ({ data }: props) => {
                 rowNumberMode="static"
 
             />
-            <ModalUser
-                columns={columns}
+            <ModalCategory
+                data={currenCategory}
                 open={ModalOpen}
                 onClose={() => setModalOpen(false)}
                 onSubmit={handleCreateNewRow}
@@ -113,4 +116,4 @@ const TableMaterial = ({ data }: props) => {
 
 
 
-export default TableMaterial;
+export default TableCategories;

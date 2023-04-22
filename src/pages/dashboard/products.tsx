@@ -1,4 +1,4 @@
-import TableMaterial from '@/components/dashboard/tables/TableMaterial';
+import TableProducts from '@/components/dashboard/tables/TableProducts';
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { UseProducts } from '@/hooks/UseProducts';
 import { IProduct } from '@/interfaces';
@@ -13,7 +13,7 @@ function products() {
 
     return (
         <DashboardLayout>
-            <TableMaterial data={products}></TableMaterial>
+            <TableProducts data={products}></TableProducts>
         </DashboardLayout>
     )
 }
