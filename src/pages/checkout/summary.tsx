@@ -1,4 +1,5 @@
 // import { CartList, OrderSummary } from "@/components/cart";
+import { CartList } from "@/components/cart";
 import { ShopLayout } from "@/components/layout";
 import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
 import NextLink from 'next/link';
@@ -14,6 +15,7 @@ export const SummaryPage = () => {
         <Grid container >
             <Grid item xs={ 12 } sm={ 7 }  >
                 {/* <CartList  /> */}
+                <CartList />
             </Grid>
 
             <Grid item xs={ 12 } sm={ 5 } >

@@ -56,7 +56,6 @@ export const ProductCard: FC<Props> = ({ product: {
               isLoading ? (<Skeleton variant="text" />) : (
                 <Typography fontWeight={800} color={"primary"} sx={{ fontSize: '1.5rem', mt:'2px', mb:'10px' }} > {`$${price}`} </Typography>
               )
-
             }
             <Button sx={{margin: 'auto'}} fullWidth  color='primary' >Agregar al Carrito</Button>
           </Box>

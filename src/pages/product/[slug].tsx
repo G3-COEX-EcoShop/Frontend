@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, Button, Chip, Grid, Typography } from '@mui/material';
+import { Box, Button, Chip, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 import { ShopLayout } from '@/components/layout';
 import { ItemCounter } from '@/components/ui';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -30,12 +30,6 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
             src={`https://res.cloudinary.com/dztzw4jkb/image/upload/v1682120432/cld-sample-5.jpg`}
             alt={"arreglar aca"} 
           />
-          <Box sx={{ my: 2 }}>
-
-              <Typography variant='subtitle1' component='h2'> Cantidad </Typography>
-              <Typography variant='body2' > Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo porro culpa modi vitae esse molestias deserunt est qui possimus quia eius vel nostrum doloribus dolor aperiam laudantium hic facere error dolorum eligendi, aliquid facilis quisquam? Et, soluta. Id, architecto accusantium! Illum dicta suscipit nam quasi ut adipisci cumque aliquam veritatis! </Typography>
-
-          </Box>
 
         </Grid>
 
@@ -67,6 +61,51 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
             </Box>
 
           </Box>
+
+        </Grid>
+        <Grid item xs={12} sm={6} >
+          <Box>
+            {/* titulos */}
+            <Typography variant='h1' component='h1' color={'primary'} > {"Caracteristicas destacadas"} </Typography>
+            <List component="nav">
+              <ListItem button component="li">
+                <ListItemText primary="Caracteristica 1" />
+              </ListItem>
+              <ListItem button component="li">
+                <ListItemText primary="Caracteristica 2" />
+              </ListItem>
+              <ListItem button component="li">
+                <ListItemText primary="Caracteristica 3" />
+              </ListItem>
+              <ListItem button component="li">
+                <ListItemText primary="Caracteristica 3" />
+              </ListItem>
+              <ListItem button component="li">
+                <ListItemText primary="Caracteristica 3" />
+              </ListItem>
+              <ListItem button component="li">
+                <ListItemText primary="Caracteristica 3" />
+              </ListItem>
+            </List>
+
+          </Box>
+
+        </Grid>
+
+        <Grid item xs={12} sm={6} >
+
+        </Grid>
+        <Grid item xs={12} sm={6} >
+          <Box>
+            {/* titulos */}
+            <Typography variant='h1' component='h1' color={'primary'}> {"Descripcion del producto"} </Typography>
+            <Typography variant='body2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quaerat. Officia, quae maiores omnis vel enim rem reprehenderit temporibus magni quidem quia quibusdam nulla tempore ratione praesentium non harum accusamus adipisci eum? Nam eos, asperiores quod laudantium tenetur molestiae mollitia repellendus in deleniti. Praesentium libero modi facere adipisci ab dolorem quis laborum quisquam, harum perferendis cum eveniet voluptatum exercitationem atque similique impedit a, sapiente ducimus hic deleniti ipsa fuga, necessitatibus excepturi quos. Eveniet ullam fugit exercitationem assumenda iste doloremque ex, id quod tenetur error. Ullam enim expedita minima, rem praesentium accusamus doloremque, voluptatibus inventore ex est quos adipisci labore quod!</Typography>
+
+          </Box>
+
+        </Grid>
+
+        <Grid item xs={0} sm={6} >
 
         </Grid>
         <pre>
