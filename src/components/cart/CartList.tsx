@@ -14,14 +14,13 @@ export const CartList: FC <Props> = ({ editable = false }) => {
     return (
         <>
             {
-                productInCart.map( product => (
-                        <Grid container spacing={ 2 } key={ product.title } sx={{ mb: 1 }} >
+                        <Grid container spacing={ 2 } key={ 0 } sx={{ mb: 1 }} >
                             <Grid item xs={ 3 }>
                                 <NextLink href="/product/slug" passHref >
                                     <Link>
                                         <CardActionArea>
                                             <CardMedia
-                                                image={ ` /products/${ product.images[0] } ` }
+                                                image={ `https://res.cloudinary.com/dztzw4jkb/image/upload/v1682120432/cld-sample-5.jpg` }
                                                 component='img'
                                                 sx={{ borderRadius: '5px' }}
                                             />
@@ -32,7 +31,7 @@ export const CartList: FC <Props> = ({ editable = false }) => {
 
                             <Grid item xs={ 6 } >
                                 <Box display='flex' flexDirection='column'  >
-                                    <Typography variant="body1" >{ product.title }</Typography>
+                                    <Typography variant="body1" >{ "titulo" }</Typography>
 
 
                                     {/* condicional */}
@@ -45,7 +44,7 @@ export const CartList: FC <Props> = ({ editable = false }) => {
                                     ?<ItemCounter/>
                                     :<Typography variant="h2" >3</Typography>
                                 }
-                                <Typography variant="subtitle1" >{ `$${ product.price }` }</Typography>
+                                <Typography variant="subtitle1" >{ `$2.000.000` }</Typography>
                                 {/* Editable */}
                                 {
                                     editable && (
@@ -57,8 +56,7 @@ export const CartList: FC <Props> = ({ editable = false }) => {
                                 }
                             </Grid>
                         </Grid>
-                    ))
-            } 
+            }
         </>
 
     )

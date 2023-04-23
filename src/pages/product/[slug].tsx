@@ -27,15 +27,23 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
           <Image
             width={500}
             height={500}
-            src={productStatic.img_url}
-            alt={productStatic.name} />
+            src={`https://res.cloudinary.com/dztzw4jkb/image/upload/v1682120432/cld-sample-5.jpg`}
+            alt={"arreglar aca"} 
+          />
+          <Box sx={{ my: 2 }}>
+
+              <Typography variant='subtitle1' component='h2'> Cantidad </Typography>
+              <Typography variant='body2' > Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo porro culpa modi vitae esse molestias deserunt est qui possimus quia eius vel nostrum doloribus dolor aperiam laudantium hic facere error dolorum eligendi, aliquid facilis quisquam? Et, soluta. Id, architecto accusantium! Illum dicta suscipit nam quasi ut adipisci cumque aliquam veritatis! </Typography>
+
+          </Box>
+
         </Grid>
 
         <Grid item xs={12} sm={5} >
           <Box>
             {/* titulos */}
-            <Typography variant='h1' component='h1'> {productStatic.name} </Typography>
-            <Typography variant='subtitle1' component='h2'> {`$${productStatic.price}`} </Typography>
+            <Typography variant='h1' component='h1'> {"Titulo del producto"} </Typography>
+            <Typography variant='subtitle1' component='h2'> {`$1.200.000`} </Typography>
 
             <Box sx={{ my: 2 }}>
 
@@ -55,7 +63,7 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
             {/* Description */}
             <Box sx={{ mt: 3 }}>
               <Typography variant='subtitle2' > Descripción </Typography>
-              <Typography variant='body2' > {productStatic.description} </Typography>
+              <Typography variant='body2' > Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo porro culpa modi vitae esse molestias deserunt est qui possimus quia eius vel nostrum doloribus dolor aperiam laudantium hic facere error dolorum eligendi, aliquid facilis quisquam? Et, soluta. Id, architecto accusantium! Illum dicta suscipit nam quasi ut adipisci cumque aliquam veritatis! </Typography>
             </Box>
 
           </Box>
@@ -66,6 +74,14 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
         </pre>
 
       </Grid>
+      
+      <Grid container spacing={3} >
+        <Grid item xs={12} sm={5} >
+        
+        </Grid>
+
+      </Grid>
+
 
     </ShopLayout>
   )
