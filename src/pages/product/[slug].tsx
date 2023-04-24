@@ -67,23 +67,24 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
           <Box>
             {/* titulos */}
             <Typography variant='h1' component='h1' color={'primary'} > {"Caracteristicas destacadas"} </Typography>
+
             <List component="nav">
-              <ListItem button component="li">
+              <ListItem  component="li">
                 <ListItemText primary="Caracteristica 1" />
               </ListItem>
-              <ListItem button component="li">
+              <ListItem  component="li">
                 <ListItemText primary="Caracteristica 2" />
               </ListItem>
-              <ListItem button component="li">
+              <ListItem  component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
-              <ListItem button component="li">
+              <ListItem  component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
-              <ListItem button component="li">
+              <ListItem  component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
-              <ListItem button component="li">
+              <ListItem  component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
             </List>
@@ -95,6 +96,8 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
         <Grid item xs={12} sm={6} >
 
         </Grid>
+
+
         <Grid item xs={12} sm={6} >
           <Box>
             {/* titulos */}
@@ -106,6 +109,20 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
         </Grid>
 
         <Grid item xs={0} sm={6} >
+
+        </Grid>
+
+        
+        <Grid item xs={12} sm={6} >
+          <Box>
+            {/* titulos */}
+            <Typography variant='h1' component='h1' color={'primary'} > {"Reseñas del producto"} </Typography>
+
+          </Box>
+
+        </Grid>
+
+        <Grid item xs={12} sm={6} >
 
         </Grid>
         <pre>
