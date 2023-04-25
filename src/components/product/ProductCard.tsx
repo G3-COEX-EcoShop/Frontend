@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
 import NextLink from 'next/link'
-import { Box, Card, CardActionArea, CardMedia, Grid, Link, Skeleton, Typography } from '@mui/material';
+import { Box, Button, Card, CardActionArea, CardMedia, Grid, Link, Skeleton, Typography } from '@mui/material';
 import { IProduct } from '../../interfaces';
 
 
@@ -51,13 +51,13 @@ export const ProductCard: FC<Props> = ({ product: {
           </Card>
 
           <Box sx={{ mt: 1 }} className='fadeIn' >
-            <Typography fontWeight={800}> {name} </Typography>
+            <Typography fontWeight={500} sx={{fontSize: "1rem"}}> {name} </Typography>
             {
-              isLoading ? (<Skeleton variant="text" sx={{ fontSize: '0.25rem' }} />) : (
-                <Typography fontWeight={500} > {`$${price}`} </Typography>
+              isLoading ? (<Skeleton variant="text" />) : (
+                <Typography fontWeight={800} color={"primary"} sx={{ fontSize: '1.5rem', mt:'2px', mb:'10px' }} > {`$${price}`} </Typography>
               )
-
             }
+            <Button sx={{margin: 'auto'}} fullWidth  color='primary' >Agregar al Carrito</Button>
           </Box>
         </Grid>
       }

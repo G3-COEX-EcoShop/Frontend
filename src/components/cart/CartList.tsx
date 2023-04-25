@@ -94,7 +94,9 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                         )
                     }
                 </Grid>
-            </Grid><Grid container spacing={2} key={0} sx={{ mb: 1 }} >
+            </Grid>
+
+            <Grid container spacing={2} key={0} sx={{ mb: 1 }} >
                 <Grid item xs={3}>
                     <Link href="/product/slug" component={NextLink}>
                         <CardActionArea>
@@ -109,7 +111,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
 
                 <Grid item xs={6} >
                     <Box display='flex' flexDirection='column'  >
-                        <Typography variant="body1" >{"titulo"}</Typography>
+                        <Typography variant="body1" >{"title"}</Typography>
 
 
                         {/* condicional */}
@@ -122,21 +124,32 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                             ? <ItemCounter />
                             : <Typography variant="h2" >3</Typography>
                     }
-                    <Typography variant="subtitle1" >{`$2000`}</Typography>
+                    <Typography variant="subtitle1" >{`$2.000.000`}</Typography>
                     {/* Editable */}
                     {
-                        editable && (
+                        editable &&
+                        (
+                            <Grid item xs={3} display='flex' alignItems='center' flexDirection='column' >
+                                {
+                                    editable
+                                        ? <ItemCounter />
+                                        : <Typography variant="h2" >3</Typography>
+                                }
+                                <Typography variant="subtitle1" >{`$2000`}</Typography>
+                                {/* Editable */}
+                                {
+                                    editable && (
 
-                            <Button variant="text" color="primary" >
-                                Remover
-                            </Button>
+                                        <Button variant="text" color="primary" >
+                                            Remover
+                                        </Button>
+                                    )
+                                }
+                            </Grid>
                         )
                     }
                 </Grid>
             </Grid>
-
-
         </>
-
     )
 }
