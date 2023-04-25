@@ -11,6 +11,8 @@ import { ModalUser } from '../modals/ModalUserAuto';
 import { IProduct } from '@/interfaces';
 import { RoleContext } from '@/context';
 import { ModalProduct } from '../modals/ModalProduct';
+import { crud } from '@/interfaces/utils';
+import { headerAuth } from '@/utils/utils';
 
 
 interface props {
@@ -21,7 +23,56 @@ const TableProducts = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
     const { rol } = React.useContext(RoleContext)
     const [current, setCurrent] = useState<IProduct | null>(null)
-    const handleCreateNewRow = (values: IProduct) => {
+
+
+    const handleCreateNewRow = async (values: IProduct, type: crud) => {
+        const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+        console.log({ values });
+
+        const requestOptions = {
+            headers: headerAuth(),
+            body: JSON.stringify(values),
+        };
+
+        switch (type) {
+            case "create":
+                try {
+                    const data = await fetch(`${urlbase}product/add`, { ...requestOptions, method: "POST" });
+                    if (data.ok) {
+                        console.log(data);
+
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+                break;
+            case "update":
+                try {
+                    const data = await fetch(`${urlbase}product/update`,
+                        { ...requestOptions, method: "PUT" });
+                    if (data.ok) {
+                        console.log(data);
+                    }
+                } catch (error) {
+                    console.log(error);
+
+                }
+                break;
+            case "delete":
+
+                try {
+                    const data = await fetch(`${urlbase}product/remove?id=${values.id}`,
+                        { ...requestOptions, method: "DELETE" });
+                    if (data.ok) {
+                        alert("Categoria editada")
+                    }
+                } catch (error) {
+                    console.log(error);
+
+                }
+                break;
+
+        }
 
     };
 
@@ -93,7 +144,10 @@ const TableProducts = ({ data }: props) => {
                 renderTopToolbarCustomActions={() => (
                     <Button
                         color="primary"
-                        onClick={() => setModalOpen(true)}
+                        onClick={() => {
+                            setCurrent(null)
+                            setModalOpen(true)
+                        }}
                         startIcon={<AddIcon />}
                         variant="outlined"
 

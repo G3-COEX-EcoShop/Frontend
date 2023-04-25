@@ -1,13 +1,13 @@
 export interface IProduct {
-  id: number;
-  category: string;
-  brand: string;
-  name: string;
-  description: string;
-  img_url: string;
-  stock: number;
-  price: number;
-  status: boolean;
+  id?: number;
+  category?: string;
+  brand?: string;
+  name?: string;
+  description?: string;
+  img_url?: string;
+  stock?: number;
+  price?: number;
+  status?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }
