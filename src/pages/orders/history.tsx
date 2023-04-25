@@ -11,13 +11,13 @@ const columns: GridColDef[] = [
         headerName: 'pagada',
         description: 'Muestra  informacion si esta pagada o no',
         width: 200,
-        renderCell: ( params: GridValueGetterParams ) => {
-            return (
-                params.row.paid
-                ? <Chip color="success" label="Pagada" variant="outlined"></Chip>
-                : <Chip color="error" label="No Pagada" variant="outlined"></Chip>
-            )
-        }
+        // renderCell: ({ row }: GridValueGetterParams) => {
+        //     return (
+        //         row.paid
+        //             ? (<Chip color="success" label="Pagada" variant="outlined" />)
+        //             : (<Chip color="error" label="No Pagada" variant="outlined" />)
+        //     )
+        // }
     },
     {
         field: 'orden',
@@ -25,17 +25,17 @@ const columns: GridColDef[] = [
         description: 'Muestra  informacion si esta pagada o no',
         width: 200,
         sortable: false,
-        renderCell: ( params: GridValueGetterParams ) => {
-            return (
-                <NextLink href={`/orders/${ params.row.id }`} passHref >
-                    <Link underline="always" >
-                        Ver orden
-                    </Link>
-                </NextLink>
-            )
-        }
-    }    
-    
+        // renderCell: (params: GridValueGetterParams) => {
+        //     return (
+        //         <NextLink href={`/orders/${params.row.id}`} passHref >
+        //             <Link underline="always" >
+        //                 Ver orden
+        //             </Link>
+        //         </NextLink>
+        //     )
+        // }
+    }
+
 ]
 const rows = [
     { id: 1, paid: true, fullname: 'Andrés Díaz' },
@@ -48,21 +48,21 @@ const rows = [
 
 
 export const HistoryPage = () => {
-  return (
-    <ShopLayout title={"Historial de ordenes"} pageDescription={"Historial de ordenes del cliente"}>
-        <Typography variant="h1" component="h1">Historial de ordenes</Typography>
-        <Grid container>
-            <Grid item xs={12} sx={{ height:650, width:'100%' }} >
-                <DataGrid 
-                    rows={ rows }
-                    columns={ columns }
-                    pageSize={ 10 }
-                    rowsPerPageOptions={ [10] }
-                />
+    return (
+        <ShopLayout title={"Historial de ordenes"} pageDescription={"Historial de ordenes del cliente"}>
+            <Typography variant="h1" component="h1">Historial de ordenes</Typography>
+            <Grid container>
+                <Grid item xs={12} sx={{ height: 650, width: '100%' }} >
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                    // pageSize={10}
+                    // rowsPerPageOptions={[10]}
+                    />
+                </Grid>
             </Grid>
-        </Grid>
-    </ShopLayout>
-  )
+        </ShopLayout>
+    )
 }
 
 export default HistoryPage;

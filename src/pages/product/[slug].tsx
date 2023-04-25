@@ -6,7 +6,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { productsList, productsQuery } from '@/services/product';
 import { IProduct } from '@/interfaces';
 import { UseProduct } from '@/hooks/UseProduct';
-import products from '@/pages/dashboard/products';
 import Image from 'next/image'
 
 interface Props {
@@ -18,7 +17,7 @@ interface Props {
 const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
   const { products: productsDinamic, isLoading, isError } = UseProduct(path);
   return (
-    <ShopLayout title={'product.title'} pageDescription={'product.description'}>
+    <ShopLayout title={productStatic.name} pageDescription={productStatic.description} imageFullUrl={productStatic.img_url}>
 
       <Grid container spacing={3}>
 
