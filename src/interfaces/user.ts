@@ -16,14 +16,14 @@ export interface IUser {
 }
 
 export interface IAddress {
-  id: number;
+  id?: number;
   name: string;
   country: string;
   city: string;
   description: string;
-  id_user: number;
-  createdAt: Date;
-  updatedAt: Date;
+  id_user?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface IPaymentMethod {

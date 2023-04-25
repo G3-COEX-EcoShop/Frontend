@@ -8,8 +8,16 @@ export interface IProduct {
   stock: number;
   price: number;
   status: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+export interface IProductCart {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+  status: boolean;
 }
 
 export interface ICategory {

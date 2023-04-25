@@ -6,27 +6,27 @@ export interface IUserRol {
   rol: string;
   membership: boolean;
   status: boolean;
-  github: boolean;
-  createdAt: string;
-  updatedAt: string;
-  Role: Role;
+  github?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  Role: IRole;
 }
 
-export interface Role {
+export interface IRole {
   id: string;
   name: string;
   description: string;
-  dashboard: boolean;
-  p_product: string;
-  p_category: string;
-  p_orders: string;
-  p_reviews: string;
-  createdAt: string;
-  updatedAt: string;
-  productPermission: Permission;
-  categoryPermission: Permission;
-  ordersPermission: Permission;
-  reviewsPermission: Permission;
+  dashboard?: boolean;
+  p_product?: string;
+  p_category?: string;
+  p_orders?: string;
+  p_reviews?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  productPermission?: Permission;
+  categoryPermission?: Permission;
+  ordersPermission?: Permission;
+  reviewsPermission?: Permission;
 }
 
 export interface Permission {
@@ -38,6 +38,6 @@ export interface Permission {
   can_update: boolean;
   can_delete: boolean;
   can_activate: boolean;
-  createdAt: null | string;
-  updatedAt: null | string;
+  createdAt?: null | string;
+  updatedAt?: null | string;
 }
