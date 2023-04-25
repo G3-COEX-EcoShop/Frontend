@@ -7,8 +7,7 @@ import {
     Chip,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { ModalUser } from '../modals/ModalUserAuto';
-import { ICategory, IProduct } from '@/interfaces';
+import { ICategory } from '@/interfaces';
 import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
 import { RoleContext } from '@/context';
@@ -44,9 +43,8 @@ const TableCategories = ({ data }: props) => {
             }
         } else {
             try {
-                requestOptions.method = "PUT"
                 const category = await fetch(`${urlbase}category/update`,
-                    requestOptions);
+                    { ...requestOptions, method: "PUT" });
                 if (category.ok) {
                     alert("Categoria editada")
                 }

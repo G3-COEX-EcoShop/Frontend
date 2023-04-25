@@ -12,6 +12,7 @@ import { ICategory, IProduct, IUser } from '@/interfaces';
 import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
 import { RoleContext } from '@/context';
+import { headerAuth } from '@/utils/utils';
 
 
 interface props {
@@ -27,21 +28,19 @@ const TableUSer = ({ data }: props) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: headerAuth(),
             body: JSON.stringify(values),
         };
         if (isNew) {
             try {
                 const res = await fetch(`${urlbase}user/add`, requestOptions);
-                console.log(res);
 
             } catch (error) {
                 console.log(error);
             }
         } else {
             try {
-                const res = await fetch(`${urlbase}user/update`, requestOptions);
-                console.log(res);
+                const res = await fetch(`${urlbase}user/update`, { ...requestOptions, method: "PUT" });
             } catch (error) {
                 console.log(error);
 
