@@ -21,10 +21,11 @@ const User = () => {
 
     const { reload } = useRouter();
     const { user, isError, isLoading } = UseUser(getIdUser());
-    const { rol, isLoaded } = useContext(RoleContext)
+    const { rol, isLoaded, removeRol } = useContext(RoleContext)
 
     const OnclickSalir = () => {
         Cookies.remove('token');
+        removeRol()
         reload();
     }
 

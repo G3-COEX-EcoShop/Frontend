@@ -8,22 +8,22 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { ModalUser } from '../modals/ModalUser';
-import { ICategory, IProduct } from '@/interfaces';
+import { ICategory, IProduct, IUser } from '@/interfaces';
 import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
 import { RoleContext } from '@/context';
 
 
 interface props {
-    data: ICategory[]
+    data: IUser[]
 }
 
-const TableCategories = ({ data }: props) => {
+const TableUSer = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
-    const [currenCategory, setcurrenCategory] = useState<ICategory | null>(null)
+    const [currenCategory, setcurrenCategory] = useState<IUser | null>(null)
     const { rol } = React.useContext(RoleContext)
 
-    const handleCreateNewRow = async (values: ICategory, isNew: boolean) => {
+    const handleCreateNewRow = async (values: IUser, isNew: boolean) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
         const requestOptions = {
             method: "POST",
@@ -54,31 +54,19 @@ const TableCategories = ({ data }: props) => {
     };
 
 
-    const columns = useMemo<MRT_ColumnDef<ICategory>[]>(
+    const columns = useMemo<MRT_ColumnDef<IUser>[]>(
         () => [
             {
                 accessorKey: 'name',
                 header: 'Nombre',
             },
             {
-                accessorKey: 'img_url',
+                accessorKey: 'email',
                 header: 'imagen',
-                Cell: ({ renderedCellValue, row }) => {
-                    if (renderedCellValue) {
-                        return <Image
-                            key={row.id}
-                            width={100}
-                            height={100}
-                            src={renderedCellValue as string}
-                            alt="imagen de categoria"
-                        />
-                    }
-
-                }
             },
             {
-                accessorKey: 'description',
-                header: 'Descripcion',
+                accessorKey: 'rol',
+                header: 'Rol',
             },
             {
                 accessorKey: 'status',
@@ -106,7 +94,7 @@ const TableCategories = ({ data }: props) => {
 
                 muiTableBodyRowProps={({ row }) => ({
                     onClick: (event) => {
-                        if (rol.categoryPermission?.can_manager) {
+                        if (rol.userPermission?.can_manager) {
                             setcurrenCategory(row.original)
                             setModalOpen(true)
                         }
@@ -132,12 +120,12 @@ const TableCategories = ({ data }: props) => {
                 rowNumberMode="static"
 
             />
-            <ModalCategory
+            {/* <ModalCategory
                 data={currenCategory}
                 open={ModalOpen}
                 onClose={() => setModalOpen(false)}
                 onSubmit={handleCreateNewRow}
-            />
+            /> */}
         </>
     );
 };
@@ -145,4 +133,4 @@ const TableCategories = ({ data }: props) => {
 
 
 
-export default TableCategories;
+export default TableUSer;

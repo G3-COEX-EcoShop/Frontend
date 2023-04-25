@@ -9,6 +9,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import { ModalUser } from '../modals/ModalUser';
 import { IProduct } from '@/interfaces';
+import { RoleContext } from '@/context';
 
 
 interface props {
@@ -17,7 +18,7 @@ interface props {
 
 const TableProducts = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
-
+    const { rol } = React.useContext(RoleContext)
 
     const handleCreateNewRow = (values: IProduct) => {
 
@@ -79,8 +80,9 @@ const TableProducts = ({ data }: props) => {
 
                 muiTableBodyRowProps={({ row }) => ({
                     onClick: (event) => {
-                        console.info(row.original);
-                        setModalOpen(true)
+                        if (rol.productPermission?.can_manager) {
+                            setModalOpen(true)
+                        }
                     },
                     sx: {
                         cursor: 'pointer',

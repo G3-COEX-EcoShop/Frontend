@@ -39,7 +39,7 @@ export default function DBHeader(props: HeaderProps) {
                     </Grid>
                     <Grid item xs />
 
-                    <Grid item>
+                    {/* <Grid item>
                         <Tooltip title="Alerts • No alerts">
                             <IconButton color="inherit">
                                 <NotificationsIcon />
@@ -50,7 +50,7 @@ export default function DBHeader(props: HeaderProps) {
                         <IconButton color="inherit" sx={{ p: 0.5 }}>
                             <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
                         </IconButton>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Toolbar>
         </AppBar>

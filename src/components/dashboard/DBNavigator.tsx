@@ -25,7 +25,7 @@ const categories = [
                 id: "Usuarios",
                 icon: <AccountCircleOutlinedIcon />,
                 active: false,
-                href: "/dashboard",
+                href: "/dashboard/users",
                 permission: "userPermission" as typePermission
             },
             {
