@@ -33,7 +33,6 @@ export default function DBContent() {
                   disableUnderline: true,
                   sx: { fontSize: 'default' },
                 }}
-                variant="standard"
               />
             </Grid>
             <Grid item>

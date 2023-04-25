@@ -59,7 +59,6 @@ export const ModalCategory = ({
                             label="Nombre"
                             value={data?.name}
                             required
-                            variant="standard"
                         />
                         <Typography marginTop={2}>Descripcion</Typography>
                         <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} required />

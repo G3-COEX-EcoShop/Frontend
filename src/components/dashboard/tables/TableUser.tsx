@@ -32,19 +32,16 @@ const TableUSer = ({ data }: props) => {
         };
         if (isNew) {
             try {
-                const category = await fetch(`${urlbase}category/add`, requestOptions);
-                if (category) {
-                    alert("nueva Categoria agregada")
-                }
+                const res = await fetch(`${urlbase}user/add`, requestOptions);
+                console.log(res);
+
             } catch (error) {
                 console.log(error);
             }
         } else {
             try {
-                const category = await fetch(`${urlbase}category/update`, requestOptions);
-                if (category) {
-                    alert("Categoria editada")
-                }
+                const res = await fetch(`${urlbase}user/update`, requestOptions);
+                console.log(res);
             } catch (error) {
                 console.log(error);
 
@@ -120,12 +117,12 @@ const TableUSer = ({ data }: props) => {
                 rowNumberMode="static"
 
             />
-            {/* <ModalCategory
+            <ModalUser
                 data={currenCategory}
                 open={ModalOpen}
                 onClose={() => setModalOpen(false)}
                 onSubmit={handleCreateNewRow}
-            /> */}
+            />
         </>
     );
 };

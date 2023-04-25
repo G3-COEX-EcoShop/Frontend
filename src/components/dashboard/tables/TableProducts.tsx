@@ -7,7 +7,7 @@ import {
     Chip,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { ModalUser } from '../modals/ModalUser';
+import { ModalUser } from '../modals/ModalUserAuto';
 import { IProduct } from '@/interfaces';
 import { RoleContext } from '@/context';
 
@@ -102,12 +102,12 @@ const TableProducts = ({ data }: props) => {
                 rowNumberMode="static"
 
             />
-            <ModalUser
+            {/* <ModalUser
                 columns={columns}
                 open={ModalOpen}
                 onClose={() => setModalOpen(false)}
                 onSubmit={handleCreateNewRow}
-            />
+            /> */}
         </>
     );
 };

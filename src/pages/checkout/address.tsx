@@ -12,37 +12,37 @@ export const AddressPage = () => {
 
             <Grid container spacing={2} sx={{ mt: 3 }} >
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Nombre' variant="standard" fullWidth />
+                    <TextField label='Nombre' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Apellido' variant="standard" fullWidth />
+                    <TextField label='Apellido' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Telefono Celular' variant="standard" fullWidth />
+                    <TextField label='Telefono Celular' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Otro telefono' variant="standard" fullWidth />
+                    <TextField label='Otro telefono' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Tipo de identificación' variant="standard" fullWidth />
+                    <TextField label='Tipo de identificación' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Numero de identificación' variant="standard" fullWidth />
+                    <TextField label='Numero de identificación' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Dirección' variant="standard" fullWidth />
+                    <TextField label='Dirección' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Detalles de la dirección' variant="standard" fullWidth />
+                    <TextField label='Detalles de la dirección' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Departamento' variant="standard" fullWidth />
+                    <TextField label='Departamento' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Municipio o Localidad' variant="standard" fullWidth />
+                    <TextField label='Municipio o Localidad' fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4} >
-                    <TextField label='Barrio' variant="standard" fullWidth />
+                    <TextField label='Barrio' fullWidth />
                 </Grid>
             </Grid>
 

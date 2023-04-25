@@ -50,7 +50,8 @@ export const ModalCategory = ({
                     <Stack
                         sx={{
                             minWidth: { xs: '300px', sm: '360px', md: '400px' },
-                            paddingTop: "5px"
+                            paddingTop: "5px",
+                            gap: '1rem',
                         }}
                     >
                         <TextField
@@ -58,10 +59,11 @@ export const ModalCategory = ({
                             label="Nombre"
                             value={data?.name}
                             required
-                            variant="standard"
                         />
-                        <Typography marginTop={2}>Descripcion</Typography>
-                        <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} required />
+                        <Box display={"flex"} flexDirection={"column"}>
+                            <Typography >Descripcion</Typography>
+                            <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} required />
+                        </Box>
 
                         <Box display={"flex"} alignItems={"center"}>
                             <Typography>Estado </Typography>

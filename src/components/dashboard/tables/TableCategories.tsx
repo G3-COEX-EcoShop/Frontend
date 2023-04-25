@@ -7,7 +7,7 @@ import {
     Chip,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { ModalUser } from '../modals/ModalUser';
+import { ModalUser } from '../modals/ModalUserAuto';
 import { ICategory, IProduct } from '@/interfaces';
 import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
