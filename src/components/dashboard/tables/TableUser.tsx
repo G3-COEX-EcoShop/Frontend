@@ -21,7 +21,7 @@ interface props {
 
 const TableUSer = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
-    const [currenCategory, setcurrenCategory] = useState<IUser | null>(null)
+    const [current, setCurrent] = useState<IUser | null>(null)
     const { rol } = React.useContext(RoleContext)
 
     const handleCreateNewRow = async (values: IUser, isNew: boolean) => {
@@ -91,7 +91,7 @@ const TableUSer = ({ data }: props) => {
                 muiTableBodyRowProps={({ row }) => ({
                     onClick: (event) => {
                         if (rol.userPermission?.can_manager) {
-                            setcurrenCategory(row.original)
+                            setCurrent(row.original)
                             setModalOpen(true)
                         }
                     },
@@ -103,7 +103,7 @@ const TableUSer = ({ data }: props) => {
                     <Button
                         color="primary"
                         onClick={() => {
-                            setcurrenCategory(null)
+                            setCurrent(null)
                             setModalOpen(true)
                         }}
                         startIcon={<AddIcon />}
@@ -117,7 +117,7 @@ const TableUSer = ({ data }: props) => {
 
             />
             <ModalUser
-                data={currenCategory}
+                data={current}
                 open={ModalOpen}
                 onClose={() => setModalOpen(false)}
                 onSubmit={handleCreateNewRow}

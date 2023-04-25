@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { ModalUser } from '../modals/ModalUserAuto';
 import { IProduct } from '@/interfaces';
 import { RoleContext } from '@/context';
+import { ModalProduct } from '../modals/ModalProduct';
 
 
 interface props {
@@ -19,7 +20,7 @@ interface props {
 const TableProducts = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
     const { rol } = React.useContext(RoleContext)
-
+    const [current, setCurrent] = useState<IProduct | null>(null)
     const handleCreateNewRow = (values: IProduct) => {
 
     };
@@ -81,6 +82,7 @@ const TableProducts = ({ data }: props) => {
                 muiTableBodyRowProps={({ row }) => ({
                     onClick: (event) => {
                         if (rol.productPermission?.can_manager) {
+                            setCurrent(row.original)
                             setModalOpen(true)
                         }
                     },
@@ -102,12 +104,13 @@ const TableProducts = ({ data }: props) => {
                 rowNumberMode="static"
 
             />
-            {/* <ModalUser
-                columns={columns}
+            <ModalProduct
+                data={current}
                 open={ModalOpen}
                 onClose={() => setModalOpen(false)}
                 onSubmit={handleCreateNewRow}
-            /> */}
+
+            />
         </>
     );
 };

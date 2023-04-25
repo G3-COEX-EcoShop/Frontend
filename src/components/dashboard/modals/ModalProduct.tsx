@@ -1,8 +1,9 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Switch, TextField, TextareaAutosize, Typography, useMediaQuery, useTheme, } from "@mui/material";
+import { Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Switch, TextField, TextareaAutosize, Typography, useMediaQuery, useTheme, } from "@mui/material";
 
 import { IProduct } from "@/interfaces";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import UploadImg from "@/components/utils/UploadImg";
+import { brandList } from "@/services/brand";
 
 interface CreateModalProps {
     data: IProduct | null;
@@ -11,7 +12,9 @@ interface CreateModalProps {
     open: boolean;
 }
 
-export const ModalCategory = ({
+const categories = ["computadores", "celulares", "televisores"]
+
+export const ModalProduct = ({
     open,
     data,
     onClose,
@@ -22,6 +25,20 @@ export const ModalCategory = ({
     const [errorUpload, seterrorUpload] = useState("")
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+    const [brands, setBrands] = useState<string[]>([])
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await brandList()
+            setBrands(data.map((item) => (item.name)))
+
+        }
+        fetchData()
+    }, [])
+
+
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -51,7 +68,8 @@ export const ModalCategory = ({
                     <Stack
                         sx={{
                             minWidth: { xs: '300px', sm: '360px', md: '400px' },
-                            paddingTop: "5px"
+                            paddingTop: "5px",
+                            gap: '1rem',
                         }}
                     >
                         <TextField
@@ -60,8 +78,10 @@ export const ModalCategory = ({
                             value={data?.name}
                             required
                         />
-                        <Typography marginTop={2}>Descripcion</Typography>
-                        <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} required />
+                        <Box display={"flex"} flexDirection={"column"}>
+                            <Typography >Descripcion</Typography>
+                            <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} required />
+                        </Box>
 
                         <Box display={"flex"} alignItems={"center"}>
                             <Typography>Estado </Typography>
@@ -69,6 +89,20 @@ export const ModalCategory = ({
                             <Switch defaultChecked={data?.status} />
 
                         </Box>
+                        <Autocomplete
+                            disablePortal
+                            id="category"
+                            options={categories}
+                            defaultValue={data?.category}
+                            renderInput={(params) => <TextField {...params} label="Categoria" />}
+                        />
+                        <Autocomplete
+                            disablePortal
+                            id="brands"
+                            options={brands}
+                            defaultValue={data?.brand}
+                            renderInput={(params) => <TextField {...params} label="Marca" />}
+                        />
 
                         <UploadImg
                             imgInit={data?.img_url}

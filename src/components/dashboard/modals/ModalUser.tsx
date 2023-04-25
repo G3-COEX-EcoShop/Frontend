@@ -78,7 +78,7 @@ export const ModalUser = ({
                             id="rol"
                             options={roles}
                             defaultValue={data?.rol}
-                            renderInput={(params) => <TextField {...params} label="Movie" />}
+                            renderInput={(params) => <TextField {...params} label="Rol" />}
                         />
 
                         <Box display={"flex"} alignItems={"center"}>

@@ -29,3 +29,13 @@ export interface ICategory {
   createdAt?: any;
   updatedAt?: any;
 }
+
+export interface IBrand {
+  id: string;
+  name: string;
+  description: string;
+  img_url: string;
+  status: boolean;
+  createdAt?: any;
+  updatedAt?: any;
+}
