@@ -1,13 +1,13 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Switch, TextField, TextareaAutosize, Typography, useMediaQuery, useTheme, } from "@mui/material";
 
-import { ICategory } from "@/interfaces";
+import { IProduct } from "@/interfaces";
 import { FormEvent, useState } from "react";
 import UploadImg from "@/components/utils/UploadImg";
 
 interface CreateModalProps {
-    data: ICategory | null;
+    data: IProduct | null;
     onClose: () => void;
-    onSubmit: (values: ICategory, isNew: boolean) => void;
+    onSubmit: (values: IProduct, isNew: boolean) => void;
     open: boolean;
 }
 
@@ -29,13 +29,14 @@ export const ModalCategory = ({
         const id = data ? data.id : target[0].value
         const url = urlImg || data?.img_url
 
-        let res: ICategory = {
+        //corregir
+        let res: IProduct = {
             id: id,
             name: target[0].value,
             description: target[2].value,
             img_url: url || "",
             status: target[4].checked
-        }
+        } as IProduct
         onSubmit(res, !data)
         onClose();
     };

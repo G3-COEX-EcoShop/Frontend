@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import MaterialReactTable, {
     type MRT_ColumnDef,
 } from 'material-react-table';
@@ -21,7 +21,7 @@ interface props {
 const TableCategories = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
     const [currenCategory, setcurrenCategory] = useState<ICategory | null>(null)
-    const { rol } = React.useContext(RoleContext)
+    const { rol } = useContext(RoleContext)
 
     const handleCreateNewRow = async (values: ICategory, isNew: boolean) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;

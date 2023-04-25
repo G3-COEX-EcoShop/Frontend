@@ -54,6 +54,7 @@ export const ModalUser = ({
                                 onChange={(e) =>
                                     setValues({ ...values, [e.target.name]: e.target.value })
                                 }
+                                variant="standard"
                             />
                         ))}
                     </Stack>
