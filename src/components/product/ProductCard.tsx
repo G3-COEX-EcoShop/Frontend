@@ -30,8 +30,8 @@ export const ProductCard: FC<Props> = ({ product: {
     <>
       {status &&
         <Grid item
-          xs={6}
-          sm={4}
+          xs={12}
+          sm={3}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

@@ -56,7 +56,7 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
 
             {/* Description */}
             <Box sx={{ mt: 3 }}>
-              <Typography variant='subtitle2' > Descripción </Typography>
+              <Typography variant='h1' component='h1' color={'primary'} > Descripción </Typography>
               <Typography variant='body2' > Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo porro culpa modi vitae esse molestias deserunt est qui possimus quia eius vel nostrum doloribus dolor aperiam laudantium hic facere error dolorum eligendi, aliquid facilis quisquam? Et, soluta. Id, architecto accusantium! Illum dicta suscipit nam quasi ut adipisci cumque aliquam veritatis! </Typography>
             </Box>
 
@@ -125,19 +125,35 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
         <Grid item xs={12} sm={6} >
 
         </Grid>
-        <pre>
-          {JSON.stringify(productStatic, null, 2)}
-        </pre>
+
 
       </Grid>
+
+      {/* aqui ira las reseñas del publico  */}
       
       <Grid container spacing={3} >
-        <Grid item xs={12} sm={5} >
-        
+        <Grid item xs={12} sm={6} >
+          
+          <Box border={1} borderColor="primary" p={2} borderRadius={5} marginTop={2}>
+            <Typography variant='body1' color={'primary'}>Andres Diaz</Typography>
+            <Typography variant="body2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, eaque!</Typography>
+          </Box>
+          <Box border={1} borderColor="primary" p={2} borderRadius={5} marginTop={2}>
+            <Typography variant='body1' color={'primary'}>Andres Diaz</Typography>
+            <Typography variant="body2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, eaque!</Typography>
+          </Box>
+          <Box border={1} borderColor="primary" p={2} borderRadius={5} marginTop={2}>
+            <Typography variant='body1' color={'primary'}>Andres Diaz</Typography>
+            <Typography variant="body2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, eaque!</Typography>
+          </Box>
+          
         </Grid>
 
       </Grid>
 
+      {/* <pre>
+          {JSON.stringify(productStatic, null, 2)}
+      </pre> */}
 
     </ShopLayout>
   )
