@@ -23,6 +23,7 @@ import { strengthColor, strengthIndicator } from '@/utils/password-strength';
 const RegisterForm = () => {
     const [level, setLevel] = useState<any>({});
     const [showPassword, setShowPassword] = useState(false);
+
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
