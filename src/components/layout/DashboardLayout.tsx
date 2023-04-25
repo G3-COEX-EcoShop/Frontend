@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren, useContext, useState } from "react";
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,6 +10,7 @@ import Navigator from '../dashboard/DBNavigator';
 import Content from '../dashboard/DBContent';
 import Header from '../dashboard/DBHeader';
 import { lightTheme } from '@/themes'
+import { RoleContext } from '@/context';
 
 function Copyright() {
     return (
@@ -30,6 +31,8 @@ const drawerWidth = 256;
 export const DashboardLayout: FC<PropsWithChildren> = ({ children }) => {
     const [mobileOpen, setMobileOpen] = useState(false);
 
+
+
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -41,6 +44,7 @@ export const DashboardLayout: FC<PropsWithChildren> = ({ children }) => {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }, bgcolor: "primary" }}
             >
                 <Navigator
+
                     PaperProps={{ style: { width: drawerWidth, backgroundColor: lightTheme.palette.grey.A100 } }}
                     variant="temporary"
                     open={mobileOpen}

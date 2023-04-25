@@ -1,21 +1,24 @@
 import LoginForm from '@/components/auth/LoginForm'
 import { BasicoLayout } from '@/components/layout/BasicoLayout'
+import { CartContext, RoleContext } from '@/context'
 import { authLogin } from '@/services/auth'
 import { Grid, Stack, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 const Login = () => {
 
     const { replace, reload } = useRouter();
     const [isLoginReq, setisLoginReq] = useState(false)
+    const { addRol } = useContext(RoleContext)
 
     async function onSubmit(values: any) {
         setisLoginReq(true)
-        const res = await authLogin(values) as { name: string, error: string }
+        const res = await authLogin(values) as { name: string, error: string, token: string }
         setisLoginReq(false)
         if (res.name) {
+            addRol(res.token)
             replace("/user")
             if (res.error) {
                 alert(res.error)

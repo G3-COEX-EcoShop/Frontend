@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import { UseUser } from '@/hooks/UseUser';
 import { getIdAndEmailUser } from '@/utils/token';
 import { GetServerSideProps } from 'next';
+import { RoleContext } from '@/context';
+import { useContext } from 'react';
 
 const getIdUser = () => {
     const token = Cookies.get('token')
@@ -19,6 +21,7 @@ const User = () => {
 
     const { reload } = useRouter();
     const { user, isError, isLoading } = UseUser(getIdUser());
+    const { rol, isLoaded } = useContext(RoleContext)
 
     const OnclickSalir = () => {
         Cookies.remove('token');
@@ -35,12 +38,15 @@ const User = () => {
                 <Button variant="contained" color="primary">
                     Save
                 </Button>
-
-                <Link href={"/dashboard"} component={NextLink} >
-                    <Button variant="text" color="primary"  >
-                        <Typography >dashboard</Typography>
-                    </Button>
-                </Link>
+                {
+                    rol?.dashboard && (
+                        <Link href={"/dashboard"} component={NextLink} >
+                            <Button variant="text" color="primary"  >
+                                <Typography >dashboard</Typography>
+                            </Button>
+                        </Link>
+                    )
+                }
                 <Button variant="contained" color="primary" onClick={OnclickSalir} >
                     <Typography >Salir</Typography>
                 </Button>

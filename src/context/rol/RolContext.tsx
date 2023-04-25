@@ -1,4 +1,4 @@
-import { IAddress, IProductCart, IRole } from '@/interfaces';
+import { IRole } from '@/interfaces';
 import { createContext } from 'react';
 
 
@@ -6,7 +6,7 @@ interface ContextProps {
     isLoaded: boolean;
     rol: IRole;
     // Methods
-    addRol: (rol: IRole) => void;
+    addRol: (token: string) => void;
     removeRol: () => void;
 }
 

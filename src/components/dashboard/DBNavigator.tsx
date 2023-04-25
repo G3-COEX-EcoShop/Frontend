@@ -15,6 +15,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "@mui/material";
 import NextLink from 'next/link'
+import { IRole, typePermission } from "@/interfaces";
+import { RoleContext } from "@/context";
 const categories = [
     {
         id: "-",
@@ -23,39 +25,43 @@ const categories = [
                 id: "Usuarios",
                 icon: <AccountCircleOutlinedIcon />,
                 active: false,
-                href: "/dashboard"
+                href: "/dashboard",
+                permission: "userPermission" as typePermission
             },
             {
                 id: "Categorias",
                 icon: <CategoryOutlinedIcon />,
                 active: false,
-                href: "/dashboard/categories"
+                href: "/dashboard/categories",
+                permission: "categoryPermission" as typePermission
             },
             {
                 id: "Productos",
                 icon: <Inventory2OutlinedIcon />,
                 active: false,
-                href: "/dashboard/products"
+                href: "/dashboard/products",
+                permission: "productPermission" as typePermission
             },
         ],
     },
-    {
-        id: "Tienda",
-        children: [
-            {
-                id: "Pedidos", icon: <ShoppingCartOutlinedIcon />,
-                active: false,
-                href: "/dashboard"
-            },
+    // {
+    //     id: "Tienda",
+    //     children: [
+    //         {
+    //             id: "Pedidos", icon: <ShoppingCartOutlinedIcon />,
+    //             active: false,
+    //             href: "/dashboard"
+    //         },
 
-        ],
-    },
+    //     ],
+    // },
 ];
 
 
 
 export default function DBNavigator(props: DrawerProps) {
     const { ...other } = props;
+    const { rol, isLoaded } = React.useContext(RoleContext)
 
     return (
         <Drawer variant="permanent" {...other} >
@@ -78,21 +84,25 @@ export default function DBNavigator(props: DrawerProps) {
                         <ListItem sx={{ py: 2, px: 3 }}>
                             <ListItemText sx={{}}>{id}</ListItemText>
                         </ListItem>
-                        {children.map(({ id: childId, icon, active, href }) => (
-                            <Link href={href} component={NextLink} key={childId} color={"black"}>
-                                <ListItem disablePadding>
-                                    <ListItemButton selected={active} >
-                                        <ListItemIcon>{icon}</ListItemIcon>
-                                        <ListItemText>{childId}</ListItemText>
-                                    </ListItemButton>
-                                </ListItem>
+                        {children.map(({ id: childId, icon, active, href, permission }) => {
+                            if (rol[permission]?.can_read) {
+                                return (
+                                    < Link href={href} component={NextLink} key={childId} color={"black"} >
+                                        <ListItem disablePadding>
+                                            <ListItemButton selected={active} >
+                                                <ListItemIcon>{icon}</ListItemIcon>
+                                                <ListItemText>{childId}</ListItemText>
+                                            </ListItemButton>
+                                        </ListItem>
+                                    </Link>
+                                )
+                            }
 
-                            </Link>
-                        ))}
+                        })}
                         <Divider sx={{ mt: 2 }} />
                     </Box>
                 ))}
             </List>
-        </Drawer>
+        </Drawer >
     );
 }

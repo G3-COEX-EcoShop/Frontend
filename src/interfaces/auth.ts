@@ -27,7 +27,15 @@ export interface IRole {
   categoryPermission?: Permission;
   ordersPermission?: Permission;
   reviewsPermission?: Permission;
+  userPermission?: Permission;
 }
+
+export type typePermission =
+  | "productPermission"
+  | "categoryPermission"
+  | "ordersPermission"
+  | "userPermission"
+  | "reviewsPermission";
 
 export interface Permission {
   id: string;

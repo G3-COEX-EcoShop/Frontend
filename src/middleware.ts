@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import jwt_decode from "jwt-decode";
 import { IUserRol } from "./interfaces";
+import { RoleContext } from "./context";
+import { useContext } from "react";
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const requestedPage = req.nextUrl.pathname;
-
   if (!token?.value)
     return NextResponse.redirect(new URL("/auth/login", req.url));
 

@@ -34,5 +34,6 @@ export const authLogin = async (values: props) => {
   return {
     name: nameUser.name,
     error: error.message,
+    token: nameUser.token,
   };
 };
