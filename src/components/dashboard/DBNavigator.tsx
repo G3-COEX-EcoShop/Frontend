@@ -12,6 +12,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import DomainOutlinedIcon from '@mui/icons-material/DomainOutlined';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "@mui/material";
 import NextLink from 'next/link'
@@ -33,6 +34,12 @@ const categories = [
                 icon: <CategoryOutlinedIcon />,
                 active: false,
                 href: "/dashboard/categories",
+                permission: "categoryPermission" as typePermission
+            }, {
+                id: "Marcas",
+                icon: <DomainOutlinedIcon />,
+                active: false,
+                href: "/dashboard/brands",
                 permission: "categoryPermission" as typePermission
             },
             {

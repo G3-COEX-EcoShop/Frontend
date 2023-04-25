@@ -7,23 +7,23 @@ import {
     Chip,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { ICategory } from '@/interfaces';
-import Image, { ImageLoader } from 'next/image';
+import { IBrand, ICategory } from '@/interfaces';
+import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
 import { RoleContext } from '@/context';
 import { headerAuth } from '@/utils/utils';
 
 
 interface props {
-    data: ICategory[]
+    data: IBrand[]
 }
 
-const TableCategories = ({ data }: props) => {
+const TableBrands = ({ data }: props) => {
     const [ModalOpen, setModalOpen] = useState(false);
-    const [currenCategory, setcurrenCategory] = useState<ICategory | null>(null)
+    const [currenCategory, setcurrenCategory] = useState<IBrand | null>(null)
     const { rol } = useContext(RoleContext)
 
-    const handleCreateNewRow = async (values: ICategory, isNew: boolean) => {
+    const handleCreateNewRow = async (values: IBrand, isNew: boolean) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
         console.log({ values });
 
@@ -34,20 +34,18 @@ const TableCategories = ({ data }: props) => {
         };
         if (isNew) {
             try {
-                const category = await fetch(`${urlbase}category/add`, requestOptions);
-                if (category.ok) {
-                    alert("nueva Categoria agregada")
-                }
+                const res = await fetch(`${urlbase}brand/add`, requestOptions);
+                console.log(res);
+
             } catch (error) {
                 console.log(error);
             }
         } else {
             try {
-                const category = await fetch(`${urlbase}category/update`,
+                const res = await fetch(`${urlbase}brand/update`,
                     { ...requestOptions, method: "PUT" });
-                if (category.ok) {
-                    alert("Categoria editada")
-                }
+                console.log(res);
+
             } catch (error) {
                 console.log(error);
 
@@ -57,7 +55,7 @@ const TableCategories = ({ data }: props) => {
     };
 
 
-    const columns = useMemo<MRT_ColumnDef<ICategory>[]>(
+    const columns = useMemo<MRT_ColumnDef<IBrand>[]>(
         () => [
             {
                 accessorKey: 'name',
@@ -148,4 +146,4 @@ const TableCategories = ({ data }: props) => {
 
 
 
-export default TableCategories;
+export default TableBrands;
