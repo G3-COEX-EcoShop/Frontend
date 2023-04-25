@@ -85,7 +85,7 @@ export default function DBNavigator(props: DrawerProps) {
                             <ListItemText sx={{}}>{id}</ListItemText>
                         </ListItem>
                         {children.map(({ id: childId, icon, active, href, permission }) => {
-                            if (rol[permission]?.can_read) {
+                            if (rol && rol[permission]?.can_read) {
                                 return (
                                     < Link href={href} component={NextLink} key={childId} color={"black"} >
                                         <ListItem disablePadding>

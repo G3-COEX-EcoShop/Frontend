@@ -3,6 +3,7 @@ import { Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, Dialog
 import { ICategory, IUser } from "@/interfaces";
 import { FormEvent, useState } from "react";
 import UploadImg from "@/components/utils/UploadImg";
+import { Password } from "@mui/icons-material";
 
 interface CreateModalProps {
     data: IUser | null;
@@ -38,8 +39,10 @@ export const ModalUser = ({
             name: target[0].value,
             email: target[2].value,
             rol: target[4].value,
-            status: target[8].checked
+            status: target[8].checked,
+            password: data ? "" : target[9].value
         } as IUser
+
         onSubmit(res, !data)
         onClose();
     };
@@ -67,7 +70,7 @@ export const ModalUser = ({
                         <TextField
                             id="email"
                             label="email"
-                            value={data?.name}
+                            value={data?.email}
                             required
                         />
                         <Autocomplete
@@ -84,6 +87,12 @@ export const ModalUser = ({
                             <Switch defaultChecked={data?.status} />
 
                         </Box>
+                        {!data && <TextField
+                            id="password"
+                            label="password"
+
+                        />}
+
 
 
                     </Stack>
