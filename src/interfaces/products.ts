@@ -71,6 +71,16 @@ export interface IProductCel {
   createdAt: string;
   updatedAt: string;
 }
+export type TProductCel =
+  | "operating_system"
+  | "storage"
+  | "ram"
+  | "processor"
+  | "screen_size"
+  | "resolution"
+  | "main_camera"
+  | "front_camera"
+  | "battery";
 
 export interface IProductTv {
   id: number;
@@ -97,3 +107,5 @@ export interface IProductLaptop {
   createdAt: string;
   updatedAt: string;
 }
+
+export type TCategory = "computadores" | "celulares" | "televisores";

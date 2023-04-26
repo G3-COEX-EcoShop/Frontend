@@ -12,3 +12,17 @@ export const categoriesList = async () => {
   }
   return categories;
 };
+
+export const categoryQuery = async (id: string) => {
+  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+  let result = { data: {}, path: "" };
+  result.data = {} as ICategory;
+  result.path = `category/query?id=${id}`;
+  try {
+    const dataFetch = await fetch(urlbase + result.path + "");
+    if (dataFetch) result.data = await dataFetch.json();
+  } catch (error) {
+    console.log(error);
+  }
+  return result;
+};
