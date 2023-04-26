@@ -29,7 +29,7 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
                 <Link component={NextLink} key={id} href={`/category/${id}`}>
                   <Button size="small" variant="outlined"  >
                     <Box flexDirection={'row'} justifyItems={'center'} alignItems={'center'} display={'flex'}>
-                      <Image width={40} height={40} src={img_url} alt={`icon ${name}`}>
+                      <Image width={40} height={40} src={img_url + ""} alt={`icon ${name}`}>
 
                       </Image>
                       <Typography variant='subtitle2' component={"span"}>{name}</Typography>

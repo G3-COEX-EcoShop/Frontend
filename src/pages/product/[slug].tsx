@@ -17,7 +17,7 @@ interface Props {
 const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
   const { products: productsDinamic, isLoading, isError } = UseProduct(path);
   return (
-    <ShopLayout title={productStatic.name} pageDescription={productStatic.description} imageFullUrl={productStatic.img_url}>
+    <ShopLayout title={productStatic.name + ""} pageDescription={productStatic.description + ""} imageFullUrl={productStatic.img_url + ""}>
 
       <Grid container spacing={3}>
 
@@ -27,7 +27,7 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
             width={500}
             height={500}
             src={`https://res.cloudinary.com/dztzw4jkb/image/upload/v1682120432/cld-sample-5.jpg`}
-            alt={"arreglar aca"} 
+            alt={"arreglar aca"}
           />
 
         </Grid>
@@ -68,22 +68,22 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
             <Typography variant='h1' component='h1' color={'primary'} > {"Caracteristicas destacadas"} </Typography>
 
             <List component="nav">
-              <ListItem  component="li">
+              <ListItem component="li">
                 <ListItemText primary="Caracteristica 1" />
               </ListItem>
-              <ListItem  component="li">
+              <ListItem component="li">
                 <ListItemText primary="Caracteristica 2" />
               </ListItem>
-              <ListItem  component="li">
+              <ListItem component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
-              <ListItem  component="li">
+              <ListItem component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
-              <ListItem  component="li">
+              <ListItem component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
-              <ListItem  component="li">
+              <ListItem component="li">
                 <ListItemText primary="Caracteristica 3" />
               </ListItem>
             </List>
@@ -111,7 +111,7 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
 
         </Grid>
 
-        
+
         <Grid item xs={12} sm={6} >
           <Box>
             {/* titulos */}
@@ -129,10 +129,10 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
         </pre>
 
       </Grid>
-      
+
       <Grid container spacing={3} >
         <Grid item xs={12} sm={5} >
-        
+
         </Grid>
 
       </Grid>

@@ -36,6 +36,8 @@ export const ModalProduct = ({
 
     const [category, setCategory] = useState(data?.category ? data?.category : categories[0])
 
+    const [brand, setBrand] = useState(data?.brand)
+
     const [loading, setLoading] = useState(true)
 
     const fetchDataProduct = async () => {
@@ -59,6 +61,7 @@ export const ModalProduct = ({
         setLoading(true)
         setProduct({ ...data })
         setCategory(data?.category ? data?.category : "")
+        setBrand(data?.brand ? data?.brand : "")
         fetchDataProduct()
 
     }, [data])
@@ -83,7 +86,10 @@ export const ModalProduct = ({
 
         let res: any = {}
         res.img_url = urlImg || data?.img_url
+        res.category = category
+        res.brand = brand
         if (data) res.id = data.id
+
 
         for (let i = 0; i < target.length; i++) {
             const item = target[i]
@@ -130,6 +136,7 @@ export const ModalProduct = ({
                     >
                         <TextField
                             id="name"
+                            name="name"
                             label="Nombre"
                             defaultValue={data?.name}
 
@@ -147,12 +154,12 @@ export const ModalProduct = ({
 
                         </Box>
 
-                        <FormControl >
-                            <InputLabel id="category">categoria</InputLabel>
+                        <FormControl id="category">
+                            <InputLabel id="categorylable">categoria</InputLabel>
                             <Select
                                 id="category"
                                 name="category"
-                                labelId="category"
+                                labelId="categorylable"
                                 label="categoria"
                                 defaultValue={data?.category}
                                 required
@@ -170,15 +177,19 @@ export const ModalProduct = ({
                             </Select>
 
                         </FormControl>
-                        <FormControl >
-                            <InputLabel id="brands">marca</InputLabel>
+                        <FormControl id="brand" >
+                            <InputLabel id="brandlable">marca</InputLabel>
                             <Select
-                                id="brands"
-                                name="brands"
-                                labelId="brands"
+                                id="brand"
+                                name="brand"
+                                labelId="brandlable"
                                 defaultValue={data?.brand ? data?.brand : brands[0]}
+                                value={brand}
                                 label="categoria"
                                 required
+                                onChange={(item) => {
+                                    setBrand(item.target.value)
+                                }}
                             >
                                 {
                                     brands.map((item) => (
@@ -393,7 +404,7 @@ export const ModalProduct = ({
                 </Box>
                 <Button color="info" variant="contained" type="submit" form="formModal">
                     {
-                        product ? ("Editar") : ("Crear")
+                        data ? ("Editar") : ("Crear")
                     }
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>
