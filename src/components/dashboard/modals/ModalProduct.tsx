@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogProps, DialogTitle, FormControl, InputLabel, MenuItem, Select, Stack, Switch, TextField, TextareaAutosize, Typography, useMediaQuery, useTheme, } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, FormControl, InputLabel, MenuItem, Select, Stack, Switch, TextField, TextareaAutosize, Typography, useMediaQuery, useTheme, } from "@mui/material";
 
 import { IProduct } from "@/interfaces";
 import { FormEvent, useContext, useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import { brandList } from "@/services/brand";
 import { crud } from "@/interfaces/utils";
 import { RoleContext } from "@/context";
 import { productsQuery } from "@/services/product";
-import { NonNullExpression } from "typescript";
 
 interface CreateModalProps {
     data: IProduct | null;
@@ -35,7 +34,17 @@ export const ModalProduct = ({
 
     const [product, setProduct] = useState<IProduct | null>(data)
 
-    const [category, setCategory] = useState("computadores")
+    const [category, setCategory] = useState(data?.category ? data?.category : categories[0])
+
+    const [loading, setLoading] = useState(true)
+
+    const fetchDataProduct = async () => {
+        if (data?.id) {
+            const fetchdata = await productsQuery(data?.id + "")
+            setProduct({ ...fetchdata.data })
+        }
+        setLoading(false)
+    }
 
     useEffect(() => {
         const fetchDataBrands = async () => {
@@ -47,33 +56,21 @@ export const ModalProduct = ({
     }, [])
 
     useEffect(() => {
-        setCategory(data?.category ? data?.category : "computadores")
-        console.log({ data });
-
-
-        if (data?.id) {
-            (async () => {
-                const res = await productsQuery(data.id + "")
-                setProduct(res.data)
-                console.log({ product });
-            })
-            console.log({ product });
-
-
-        } else {
-            setProduct(data)
-            console.log({ product });
-
-        }
+        setLoading(true)
+        setProduct({ ...data })
+        setCategory(data?.category ? data?.category : "")
+        fetchDataProduct()
 
     }, [data])
 
-    useEffect(() => {
-        setCategory(product?.Category + "")
-
-    }, [product])
 
 
+    if (loading) return (
+        <Dialog open={open} fullScreen={fullScreen}
+        >
+            <>Cargando...</>
+        </Dialog>
+    )
 
 
 
@@ -81,8 +78,6 @@ export const ModalProduct = ({
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log("submit");
-
         const target: any[] = e.target as any
         const type: crud = data ? "update" : "create"
 
@@ -106,8 +101,6 @@ export const ModalProduct = ({
             }
 
         }
-        console.log({ res });
-
         onSubmit(res, type)
         onClose();
     };
@@ -122,10 +115,10 @@ export const ModalProduct = ({
 
 
     return (
-        <form onSubmit={handleSubmit} id="formModal">
-            <Dialog open={open} fullScreen={fullScreen}
-            >
-                <DialogContent  >
+        <Dialog open={open} fullScreen={fullScreen}
+        >
+            <DialogContent  >
+                <form onSubmit={handleSubmit} id="formModal">
 
 
                     <Stack
@@ -138,19 +131,19 @@ export const ModalProduct = ({
                         <TextField
                             id="name"
                             label="Nombre"
-                            defaultValue={product?.name}
+                            defaultValue={data?.name}
 
                             required
                         />
                         <Box display={"flex"} flexDirection={"column"}>
                             <Typography >Descripcion</Typography>
-                            <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} defaultValue={product?.description} required />
+                            <TextareaAutosize name="description" id="description" placeholder="Descripcion del producto" minRows={3} defaultValue={data?.description} required />
                         </Box>
 
                         <Box display={"flex"} alignItems={"center"}>
                             <Typography>Estado </Typography>
-                            <Typography>{product?.status} </Typography>
-                            <Switch defaultChecked={product?.status} id="status" />
+                            <Typography>{data?.status} </Typography>
+                            <Switch defaultChecked={data?.status} id="status" name="status" />
 
                         </Box>
 
@@ -158,8 +151,10 @@ export const ModalProduct = ({
                             <InputLabel id="category">categoria</InputLabel>
                             <Select
                                 id="category"
+                                name="category"
                                 labelId="category"
                                 label="categoria"
+                                defaultValue={data?.category}
                                 required
                                 value={category}
                                 onChange={(item) => {
@@ -179,8 +174,9 @@ export const ModalProduct = ({
                             <InputLabel id="brands">marca</InputLabel>
                             <Select
                                 id="brands"
+                                name="brands"
                                 labelId="brands"
-                                defaultValue={product?.brand ? product?.brand : brands[0]}
+                                defaultValue={data?.brand ? data?.brand : brands[0]}
                                 label="categoria"
                                 required
                             >
@@ -195,20 +191,22 @@ export const ModalProduct = ({
 
                         <TextField
                             id="price"
+                            name="price"
                             type="number"
                             label="Precio"
-                            defaultValue={product?.price}
+                            defaultValue={data?.price}
                             required
                         />
                         <TextField
                             id="stock"
+                            name="stock"
                             type="number"
                             label="Cantidad"
-                            defaultValue={product?.stock}
+                            defaultValue={data?.stock}
                             required
                         />
                         <UploadImg
-                            imgInit={product?.img_url}
+                            imgInit={data?.img_url}
                             setUrl={seturlImg}
                             seterror={seterrorUpload}
                         ></UploadImg>
@@ -384,23 +382,23 @@ export const ModalProduct = ({
 
                     </Stack>
 
-                </DialogContent>
-                <DialogActions sx={{ p: '1.25rem', marginTop: "2rem" }} >
-                    <Box marginRight={"auto"}>
+                </form>
+            </DialogContent>
+            <DialogActions sx={{ p: '1.25rem', marginTop: "2rem" }} >
+                <Box marginRight={"auto"}>
 
-                        {
-                            (rol.productPermission?.can_delete && product) && <Button color="primary" variant="text" onClick={handleDelete}> Eliminar</Button>
-                        }
-                    </Box>
-                    <Button color="info" variant="contained" type="submit" form="formModal">
-                        {
-                            product ? ("Editar") : ("Crear")
-                        }
-                    </Button>
-                    <Button onClick={onClose}>Cancel</Button>
+                    {
+                        (rol.productPermission?.can_delete && product) && <Button color="primary" variant="text" onClick={handleDelete}> Eliminar</Button>
+                    }
+                </Box>
+                <Button color="info" variant="contained" type="submit" form="formModal">
+                    {
+                        product ? ("Editar") : ("Crear")
+                    }
+                </Button>
+                <Button onClick={onClose}>Cancel</Button>
 
-                </DialogActions>
-            </Dialog >
-        </form>
+            </DialogActions>
+        </Dialog >
     );
 };
