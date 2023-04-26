@@ -12,6 +12,8 @@ import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
 import { RoleContext } from '@/context';
 import { headerAuth } from '@/utils/utils';
+import { crud } from '@/interfaces/utils';
+import { MoldaBrand } from '../modals/ModalBrands';
 
 
 interface props {
@@ -23,35 +25,59 @@ const TableBrands = ({ data }: props) => {
     const [currenCategory, setcurrenCategory] = useState<IBrand | null>(null)
     const { rol } = useContext(RoleContext)
 
-    const handleCreateNewRow = async (values: IBrand, isNew: boolean) => {
+    const handleCreateNewRow = async (values: IBrand, type: crud) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
         console.log({ values });
 
         const requestOptions = {
-            method: "POST",
             headers: headerAuth(),
             body: JSON.stringify(values),
         };
-        if (isNew) {
-            try {
-                const res = await fetch(`${urlbase}brand/add`, requestOptions);
-                console.log(res);
+        switch (type) {
+            case "create":
+                try {
+                    const data = await fetch(`${urlbase}brand/add`, { ...requestOptions, method: "POST" });
+                    if (data.ok) {
+                        alert("marca creada")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+                break;
+            case "update":
+                try {
+                    const data = await fetch(`${urlbase}brand/update`,
+                        { ...requestOptions, method: "PUT" });
+                    if (data.ok) {
+                        alert("marca actualizada")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
 
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            try {
-                const res = await fetch(`${urlbase}brand/update`,
-                    { ...requestOptions, method: "PUT" });
-                console.log(res);
+                }
+                break;
+            case "delete":
 
-            } catch (error) {
-                console.log(error);
+                try {
+                    const data = await fetch(`${urlbase}brand/remove?id=${values.id}`,
+                        { ...requestOptions, method: "DELETE" });
+                    if (data.ok) {
+                        alert("marca eliminada")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
 
-            }
+                }
+                break;
 
         }
+
     };
 
 
@@ -133,7 +159,7 @@ const TableBrands = ({ data }: props) => {
                 rowNumberMode="static"
 
             />
-            <ModalCategory
+            <MoldaBrand
                 data={currenCategory}
                 open={ModalOpen}
                 onClose={() => setModalOpen(false)}

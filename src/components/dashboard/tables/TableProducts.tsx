@@ -39,8 +39,9 @@ const TableProducts = ({ data }: props) => {
                 try {
                     const data = await fetch(`${urlbase}product/add`, { ...requestOptions, method: "POST" });
                     if (data.ok) {
-                        console.log(data);
-
+                        alert("producto creado")
+                    } else {
+                        alert("ocurrio un problema")
                     }
                 } catch (error) {
                     console.log(error);
@@ -51,7 +52,9 @@ const TableProducts = ({ data }: props) => {
                     const data = await fetch(`${urlbase}product/update`,
                         { ...requestOptions, method: "PUT" });
                     if (data.ok) {
-                        console.log(data);
+                        alert("producto actualizado")
+                    } else {
+                        alert("ocurrio un problema")
                     }
                 } catch (error) {
                     console.log(error);
@@ -64,7 +67,9 @@ const TableProducts = ({ data }: props) => {
                     const data = await fetch(`${urlbase}product/remove?id=${values.id}`,
                         { ...requestOptions, method: "DELETE" });
                     if (data.ok) {
-                        alert("Categoria editada")
+                        alert("producto eliminado")
+                    } else {
+                        alert("ocurrio un problema")
                     }
                 } catch (error) {
                     console.log(error);

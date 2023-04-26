@@ -22,10 +22,10 @@ export interface IProductCart {
 
 export interface ICategory {
   id: string;
-  name: string;
-  description: string;
-  img_url: string;
-  status: boolean;
+  name?: string;
+  description?: string;
+  img_url?: string;
+  status?: boolean;
   createdAt?: any;
   updatedAt?: any;
 }

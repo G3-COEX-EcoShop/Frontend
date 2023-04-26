@@ -12,6 +12,7 @@ import Image, { ImageLoader } from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
 import { RoleContext } from '@/context';
 import { headerAuth } from '@/utils/utils';
+import { crud } from '@/interfaces/utils';
 
 
 interface props {
@@ -23,35 +24,56 @@ const TableCategories = ({ data }: props) => {
     const [currenCategory, setcurrenCategory] = useState<ICategory | null>(null)
     const { rol } = useContext(RoleContext)
 
-    const handleCreateNewRow = async (values: ICategory, isNew: boolean) => {
+    const handleCreateNewRow = async (values: ICategory, type: crud) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
         console.log({ values });
 
         const requestOptions = {
-            method: "POST",
             headers: headerAuth(),
             body: JSON.stringify(values),
         };
-        if (isNew) {
-            try {
-                const category = await fetch(`${urlbase}category/add`, requestOptions);
-                if (category.ok) {
-                    alert("nueva Categoria agregada")
+        switch (type) {
+            case "create":
+                try {
+                    const data = await fetch(`${urlbase}category/add`, { ...requestOptions, method: "POST" });
+                    if (data.ok) {
+                        alert("categoria creada")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            try {
-                const category = await fetch(`${urlbase}category/update`,
-                    { ...requestOptions, method: "PUT" });
-                if (category.ok) {
-                    alert("Categoria editada")
-                }
-            } catch (error) {
-                console.log(error);
+                break;
+            case "update":
+                try {
+                    const data = await fetch(`${urlbase}category/update`,
+                        { ...requestOptions, method: "PUT" });
+                    if (data.ok) {
+                        alert("categoria actualizada")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
 
-            }
+                }
+                break;
+            case "delete":
+
+                try {
+                    const data = await fetch(`${urlbase}category/remove?id=${values.id}`,
+                        { ...requestOptions, method: "DELETE" });
+                    if (data.ok) {
+                        alert("categoria eliminada")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
+
+                }
+                break;
 
         }
     };
@@ -118,20 +140,7 @@ const TableCategories = ({ data }: props) => {
                         cursor: 'pointer',
                     },
                 })}
-                renderTopToolbarCustomActions={() => (
-                    <Button
-                        color="primary"
-                        onClick={() => {
-                            setcurrenCategory(null)
-                            setModalOpen(true)
-                        }}
-                        startIcon={<AddIcon />}
-                        variant="outlined"
 
-                    >
-                        Nuevo
-                    </Button>
-                )}
                 rowNumberMode="static"
 
             />

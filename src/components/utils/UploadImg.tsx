@@ -58,13 +58,13 @@ const UploadImg = ({ setUrl, seterror, imgInit }: props) => {
             </section>
             <input
                 accept="image/*"
-                id="raised-button-file"
+                id="uploadIMG"
                 hidden
                 type="file"
 
                 onChange={handleImageUpload}
             />
-            <label htmlFor="raised-button-file">
+            <label htmlFor="uploadIMG">
                 <Button variant="outlined" component="span" startIcon={<FileUploadIcon />}
                     sx={{ width: 120, height: 35 }}>
                     Upload

@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { ModalCategory } from '../modals/ModalCategory';
 import { RoleContext } from '@/context';
 import { headerAuth } from '@/utils/utils';
+import { crud } from '@/interfaces/utils';
 
 
 interface props {
@@ -24,29 +25,60 @@ const TableUSer = ({ data }: props) => {
     const [current, setCurrent] = useState<IUser | null>(null)
     const { rol } = React.useContext(RoleContext)
 
-    const handleCreateNewRow = async (values: IUser, isNew: boolean) => {
+    const handleCreateNewRow = async (values: IUser, type: crud) => {
         const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
         const requestOptions = {
-            method: "POST",
             headers: headerAuth(),
             body: JSON.stringify(values),
         };
-        if (isNew) {
-            try {
-                const res = await fetch(`${urlbase}user/add`, requestOptions);
+        switch (type) {
+            case "create":
+                try {
+                    const data = await fetch(`${urlbase}user/add`, { ...requestOptions, method: "POST" });
+                    if (data.ok) {
+                        alert("usuario creado")
 
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            try {
-                const res = await fetch(`${urlbase}user/update`, { ...requestOptions, method: "PUT" });
-            } catch (error) {
-                console.log(error);
+                    } else {
+                        alert("ocurrio un problema")
+                    }
 
-            }
+                } catch (error) {
+                    console.log(error);
+
+                }
+                break;
+            case "update":
+                try {
+                    const data = await fetch(`${urlbase}user/update`,
+                        { ...requestOptions, method: "PUT" });
+                    if (data.ok) {
+                        alert("usuario acualizado")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
+
+                }
+                break;
+            case "delete":
+
+                try {
+                    const data = await fetch(`${urlbase}user/remove?id=${values.id}`,
+                        { ...requestOptions, method: "DELETE" });
+                    if (data.ok) {
+                        alert("usuario eliminado")
+                    } else {
+                        alert("ocurrio un problema")
+                    }
+                } catch (error) {
+                    console.log(error);
+
+                }
+                break;
 
         }
+
     };
 
 

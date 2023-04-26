@@ -31,7 +31,6 @@ export const ModalProduct = ({
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
     const [brands, setBrands] = useState<string[]>([])
 
-
     useEffect(() => {
         const fetchData = async () => {
             const data = await brandList()
@@ -46,17 +45,28 @@ export const ModalProduct = ({
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const target: any[] = e.target as any
-        const id = data ? data.id : target[0].value
-        const url = urlImg || data?.img_url
         const type: crud = data ? "update" : "create"
-        //corregir
-        let res: IProduct = {
-            id: id,
-            name: target[0].value,
-            description: target[2].value,
-            img_url: url || "",
-            status: target[4].checked
-        } as IProduct
+
+        let res: any = {}
+        res.img_url = urlImg || data?.img_url
+        if (data) res.id = data.id
+
+        for (let i = 0; i < target.length; i++) {
+            const item = target[i]
+            if (item.id) {
+                if (item.value) {
+                    if (item.id === "status") {
+                        res.status = item.checked
+                    } else {
+                        res[item.id] = item.value
+                    }
+
+                }
+
+
+            }
+
+        }
         onSubmit(res, type)
         onClose();
     };
@@ -86,18 +96,19 @@ export const ModalProduct = ({
                         <TextField
                             id="name"
                             label="Nombre"
-                            value={data?.name}
+                            defaultValue={data?.name}
+
                             required
                         />
                         <Box display={"flex"} flexDirection={"column"}>
                             <Typography >Descripcion</Typography>
-                            <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} value={data?.description} required />
+                            <TextareaAutosize name="Soft" placeholder="Descripcion de la categoria" minRows={5} defaultValue={data?.description} required />
                         </Box>
 
                         <Box display={"flex"} alignItems={"center"}>
                             <Typography>Estado </Typography>
                             <Typography>{data?.status} </Typography>
-                            <Switch defaultChecked={data?.status} />
+                            <Switch defaultChecked={data?.status} id="status" />
 
                         </Box>
                         <Autocomplete
@@ -105,16 +116,30 @@ export const ModalProduct = ({
 
                             options={categories}
                             defaultValue={data?.category}
-                            renderInput={(params) => <TextField {...params} label="Categoria" required />}
+                            renderInput={(params) => <TextField {...params} label="Categoria" required id="category" />}
                         />
                         <Autocomplete
                             disablePortal
                             id="brands"
                             options={brands}
                             defaultValue={data?.brand}
-                            renderInput={(params) => <TextField {...params} label="Marca" required />}
+                            renderInput={(params) => <TextField {...params} label="Marca" required id="brands" />}
                         />
 
+                        <TextField
+                            id="price"
+                            type="number"
+                            label="Precio"
+                            defaultValue={data?.price}
+                            required
+                        />
+                        <TextField
+                            id="stock"
+                            type="number"
+                            label="Cantidad"
+                            defaultValue={data?.stock}
+                            required
+                        />
                         <UploadImg
                             imgInit={data?.img_url}
                             setUrl={seturlImg}
