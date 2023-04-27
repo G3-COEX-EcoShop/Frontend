@@ -20,14 +20,14 @@ const Home: FC<props> = ({ productsStatic, categories }) => {
 
   return (
     <ShopLayout title={'Tienda EcoShop'} pageDescription={'Bienvenido a nuestra tienda de electrónica, donde ofrecemos una amplia variedad de productos de tecnología de vanguardia'} imageFullUrl='https://lh3.googleusercontent.com/u/0/drive-viewer/AAOQEOQnX9lPLVoh3eL1WKMqg2-dZlDDsfO4H_JusGDbkNBFF7ugyWllUCV5wipPARdgpGLp8srtCotMFYWTlynZiHvVe0vA=w1920-h975'>
-      <Box flexDirection={{ xs: 'column', sm: "row" }} display={'flex'} justifyContent={'space-around'}>
+      <Box flexDirection={{ xs: 'row', sm: "row" }} display={'flex'} justifyContent={'space-around'}>
         {
           categories.length &&
           categories.map(({ id, name, description, img_url, status }) => {
             if (status) {
               return (
                 <Link component={NextLink} key={id} href={`/category/${id}`}>
-                  <Button size="small" variant="outlined" >
+                  <Button size="small" variant="outlined"  >
                     <Box flexDirection={'row'} justifyItems={'center'} alignItems={'center'} display={'flex'}>
                       <Image width={40} height={40} src={img_url} alt={`icon ${name}`}>
 

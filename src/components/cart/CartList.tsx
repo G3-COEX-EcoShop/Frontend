@@ -109,7 +109,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
 
                 <Grid item xs={6} >
                     <Box display='flex' flexDirection='column'  >
-                        <Typography variant="body1" >{"titulo"}</Typography>
+                        <Typography variant="body1" >{product.title}</Typography>
 
 
                         {/* condicional */}
@@ -122,7 +122,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                             ? <ItemCounter />
                             : <Typography variant="h2" >3</Typography>
                     }
-                    <Typography variant="subtitle1" >{`$2000`}</Typography>
+                    <Typography variant="subtitle1" >{`$${product.price}`}</Typography>
                     {/* Editable */}
                     {
                         editable && (
@@ -134,8 +134,8 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                     }
                 </Grid>
             </Grid>
-
-
+            ))
+            }
         </>
 
     )
