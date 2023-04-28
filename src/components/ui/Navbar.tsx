@@ -49,8 +49,8 @@ export const Navbar = () => {
                 </IconButton>
                 <NextLink href={'/'}>
                     <Image
-                        width={100}
-                        height={50}
+                        width={110}
+                        height={45}
                         src="https://lh3.googleusercontent.com/u/0/drive-viewer/AAOQEOQnX9lPLVoh3eL1WKMqg2-dZlDDsfO4H_JusGDbkNBFF7ugyWllUCV5wipPARdgpGLp8srtCotMFYWTlynZiHvVe0vA=w1920-h975" alt="icon Tienda EcoShop"
                     />
 

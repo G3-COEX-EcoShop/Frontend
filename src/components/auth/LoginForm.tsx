@@ -121,7 +121,7 @@ const LoguinForm: FC<prop> = ({ onSubmit, isLoginReq }) => {
                         <Grid item xs={12} sx={{ mt: -1 }}>
                             <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
                                 <Box></Box>
-                                <Link variant="h6" color="text.primary">
+                                <Link variant="h6" href='./forgotPassword' color="text.primary">
                                     Forgot Password?
                                 </Link>
                             </Stack>

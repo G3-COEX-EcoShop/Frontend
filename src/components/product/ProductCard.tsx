@@ -39,12 +39,14 @@ export const ProductCard: FC<Props> = ({ product: {
           <Card>
             <NextLink href={`/product/${id}`} passHref prefetch={false} >
               <Link component="span">
-                <CardActionArea>
+                <CardActionArea sx={{ width:'100px', height:'340px',  }}  >
                   <CardMedia
                     image={img_url}
                     component='img'
                     className='fadeIn'
-                    alt={name} />
+                    alt={name} 
+                    sx={{ width:'240px' }}
+                    />
                 </CardActionArea>
               </Link>
             </NextLink>

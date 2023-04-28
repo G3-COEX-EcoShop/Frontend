@@ -5,7 +5,7 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#FE0000",
+      main: "#CBD5C9",
     },
     secondary: {
       main: "#ffffff",
@@ -57,7 +57,7 @@ export const lightTheme = createTheme({
 
     MuiButton: {
       defaultProps: {
-        variant: "contained",
+        variant: "outlined",
         size: "small",
         disableElevation: true,
       },
@@ -67,7 +67,7 @@ export const lightTheme = createTheme({
           boxShadow: "none",
           borderRadius: 10,
           ":hover": {
-            backgroundColor: "rgba(0,0,0,0.05)",
+            backgroundColor: "rgba(255,0,0,1)",
             transition: "all 0.3s ease-in-out",
           },
         },

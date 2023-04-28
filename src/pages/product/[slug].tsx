@@ -48,7 +48,7 @@ const ProductPage: FC<Props> = ({ productStatic, path, product }) => {
             </Box>
 
             {/* Agregar al carrito */}
-            <Button color='primary' className='circular-btn'>
+            <Button color='primary'>
               Agregar al carrito
             </Button>
 

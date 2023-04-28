@@ -18,7 +18,7 @@ export const ProductList: FC<Props> = ({ productsStatic, productsDinamic, isLoad
 
 
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={2} sx={{ mt: '50px' }}>
             {
                 productsStatic && productsStatic.length && productsStatic.map((product, i) => (
                     <ProductCard
